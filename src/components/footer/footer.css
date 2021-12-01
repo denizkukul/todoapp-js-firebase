@@ -1,0 +1,35 @@
+/* Footer Buttons */
+.footer-button-container {
+    display: flex;
+    justify-content: space-around;
+    width: 65%;
+    margin: auto;
+    padding: 0 calc(var(--app-spacing-y-normal) + 20px) 0 0;
+    opacity: 0;
+    transition: height var(--transition-time), opacity var(--transition-time), padding var(--transition-time);
+}
+
+.list-visible .footer-button-container {
+    height: 20px;
+    opacity: 1;
+    padding-bottom: var(--footer-padding-bottom);
+}
+
+.footer-button {
+    display: block;
+    text-align: center;
+    color: var(--color8);
+    border: none;
+    font-size: var(--text-button-font-size);
+}
+
+.footer-button:hover,
+.footer-button:focus-visible {
+    cursor: default;
+}
+
+.list-visible .footer-button:hover,
+.list-visible .footer-button:focus-visible {
+    cursor: pointer;
+    text-decoration: underline;
+}

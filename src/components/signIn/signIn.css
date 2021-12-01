@@ -1,0 +1,34 @@
+.sign-in {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.sign-in-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    margin: auto;
+}
+
+.sign-in button {
+    font-size: 1rem;
+    color: var(--color1);
+    background-color: var(--color8);
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.sign-in button:hover,
+.sign-in button:focus-visible {
+    background-color: var(--color7);
+    cursor: pointer;
+}
+
+.sign-in button:active {
+    color: var(--color9);
+    background-color: var(--color8);
+}

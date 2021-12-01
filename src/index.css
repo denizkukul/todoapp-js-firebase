@@ -1,0 +1,476 @@
+/* Variables */
+:root {
+    /* Colors */
+    --color1: #FFFFFF; /* Todo-Edit components and buttons background color*/
+    --color2: #FAFAFA; /* Header background color*/
+    --color3: #F1F1F1; /* App background color*/
+    --color4: #DEDEDE; /* Body background color*/
+    --color5: #CCCCCC; /* Text-Buttons Menu-items hover color */
+    --color6: #AAAAAA; /* Items and buttons border color */
+    --color7: #909090; /* Completed todo's text color */
+    --color8: #606060; /* Icon, Text, header, header-border color*/
+    --color9: #000000; /* Text button hover color*/
+    
+    /* Transition Durations */
+    --transition-time: 0ms;
+    --half-transition-time: calc(var(--transition-time) / 2);
+    --options-transition-time: calc(var(--transition-time) / 4);
+    
+    /* Header*/
+    --header-height: 80px;
+    
+    /* Header Button */
+    --header-button-size: 40px;
+    --header-button-left: var(--app-spacing-x);
+    
+    /* Title */
+    --title-font-size: 36px;
+    --title-letter-spacing: 10px;
+    
+    /* Menu */
+    --menu-icon-size: 36px;
+    
+    /* App */
+    --app-border-radius: 25px;
+    --app-font-size: 1rem;
+    --app-min-width: 900px;
+    --app-spacing-x: 60px;
+    --app-spacing-y: 15px;
+    --app-spacing-y-normal: calc(var(--app-spacing-y) * 1.5);
+    --app-spacing-y-large: calc(var(--app-spacing-y) * 3);
+    --item-space-y: calc(var(--app-spacing-y));
+
+    /* Todo && Edit Components */
+    --text-button-font-size: 1.125rem;
+    --item-size: 40px;
+    --item-height: calc(var(--item-size) * 2);
+    --check-container-width: calc(var(--item-size) * 2);
+    --icon-button-size: var(--item-size);
+    --icon-size: calc(var(--item-size) / 1.5);
+    --icon-padding: calc(var(--item-size) / 2);
+    --icon-color: var(--color8);
+    --button-container-width: calc(var(--item-size) * 3.5);
+    --item-box-shadow-blur: 10px;
+    --item-box-shadow-spread: 5px;
+    --item-border-radius: var(--item-size);
+
+    /* Footer */
+    --footer-padding-bottom: calc(var(--app-spacing-y) * 3);
+
+
+    /* Settings */
+    --option-font-size: 1.05rem;
+    --option-margin-left: 50px;
+    --option-value-width: 90px;
+    --option-value-height: 40px;
+    --option-icon-size: 30px;
+    --option-icon-position: 24px;
+    --option-icon-margin: 9px
+}
+
+/* General */
+* {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    scroll-behavior: smooth;
+    scrollbar-width: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    background-color: var(--color4);
+    min-height: 100vh;
+}
+
+h1 {
+    color: var(--color8);
+    font-size: 22px;
+}
+
+h2 {
+    color: var(--color8);
+    font-size: 18px;
+}
+
+.app-container {
+    display: none;
+    visibility: hidden;
+    width: 100%;
+    max-width: var(--app-min-width);
+}
+
+input {
+    font-size: var(--app-font-size);
+    color: var(--color8) ;
+}
+
+span.material-icons {
+    color: var(--color8);
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Buttons */
+.icon-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color1);
+    border: 1px solid var(--color6);
+}
+
+.icon-button:hover,
+.icon-button:focus-visible {
+    cursor: pointer;
+    box-shadow: 0 0 5px 4px var(--color6);
+}
+
+.app-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--icon-button-size);
+    height: var(--icon-button-size);
+    border-radius: 50%;
+    transition: box-shadow var(--transition-time), opacity var(--transition-time);
+}
+.app-button span.material-icons {
+    font-size: var(--icon-size);
+}
+
+.header-button {
+    position: absolute;
+    left: var(--header-button-left);
+    height: var(--header-button-size);
+    width: var(--header-button-size);
+    background-color: var(--header-background-color);
+    border: none;
+    border-radius: 10px;
+    transition: box-shadow var(--transition-time), opacity var(--half-transition-time) linear, visibility var(--half-transition-time) linear;
+}
+
+.header-button span.material-icons {
+    font-size: var(--header-button-size);
+    height: var(--header-button-size);
+    width: var(--header-button-size);
+}
+
+.text-button {
+    font-size: var(--text-button-font-size);
+    border: 1px solid var(--color6);
+    background-color: var(--color1);
+    color: var(--color8);
+    cursor: pointer;
+}
+
+.text-button:hover,
+.text-button:focus-visible {
+    color: var(--color9);
+    cursor: pointer;
+    background-color: var(--color5);
+    transition: background-color var(--transition-time), color var(--transition-time);
+}
+
+.text-button:active {
+    color: var(--color9);
+    background-color: var(--color7);
+    transition: background-color 0s;
+}
+
+/* Progress-Indicator */
+.progress {
+    display: flex;
+    font-size: 50px;
+    inset: 0;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    height: 100vh;
+}
+
+.spinner-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 38px;
+    width: 38px;
+    border-radius: 50%;
+    border: 5px solid var(--color8);
+}
+
+.spinner  {
+    background-color: transparent ;
+    border: 30px solid transparent;
+    border-top: 30px solid var(--color4);
+    height: 0px;
+    width: 0px;
+    animation: spin infinite 1s linear;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Media Queries */
+/* Tablet */
+@media screen and (max-width: 950px) {
+    :root {
+        --app-min-width: 96%;
+        --app-spacing-y: 12px;
+        --app-spacing-x: 45px;
+    }
+    .settings .save button {
+        margin-bottom: 50px;
+    }
+}
+@media screen and (max-width: 800px) {
+    :root {
+        --app-min-width: 100%;
+        --app-spacing-x: 30px;
+    }
+}
+@media screen and (max-width: 650px) {
+    :root {
+        --app-spacing-x: 15px;
+        --header-button-left: 30px;
+        --item-size: 36px;
+        --icon-button-size: 38px;
+        --icon-size: 26px;
+        --icon-padding: 10px;
+        --button-container-width: 96px;
+        --check-container-width: 58px;
+    }
+    .modal-window-container {
+        width: 80%;
+        min-width: 0;
+    }
+    .modal-text {
+        font-size: 1.5rem;
+    }
+    .modal-button {
+        font-size: 1.1rem;
+        height: 35px;
+        width: 75px;
+    }
+
+    .menu-item .material-icons {
+        margin-left: calc(var(--header-button-left) + 2px);
+    }
+    .add-button {
+        padding-right: 2px;
+    }
+    .check-button {
+        padding-top: 0;
+    }
+    .edit-button {
+        margin-left: 0px;
+        margin-right: var(--icon-padding);
+        padding-bottom: 2px;
+    }
+    .delete-button {
+        margin-right: var(--icon-padding);
+        padding-bottom: 2px;
+    }
+    .footer-button-container {
+        padding-right: 20px;
+        width: 80%;
+    } 
+    .settings .save button {
+        padding: 0 calc(var(--item-height) - 30px);
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px){
+    :root {
+        --item-size: 40px;
+        --app-spacing-y: 10px;
+        --header-height: 60px;
+        --title-font-size: 30px;
+        --title-letter-spacing: 8px;
+        --header-button-size: 35px;
+        --menu-icon-size: 30px;
+        --option-margin-left: 30px;
+    }
+    .title{
+        padding-left: 10px;
+    }
+    .menu-item {
+        font-size: 1.1rem;
+    }
+    .delete-button {
+        margin-right: var(--icon-padding);
+        padding-bottom: 1px;
+    }
+    .settings .save button {
+        font-size: var(--option-font-size);
+    }
+    .info {
+        padding: 20px 30px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    :root {
+        --icon-button-size: 34px;
+        --icon-size: 24px;
+        --header-button-left: 20px;
+        --item-height: 104px;
+        --text-button-font-size: 1.05rem;
+        --button-container-width: 58px;
+        --item-border-radius: var(--icon-size);
+        --option-margin-left: 0px;
+        --option-value-height: 35px;
+        --option-value-width: 100px;
+        --option-icon-position: 32px;
+        --option-icon-margin: 7px;
+    }
+    .modal-window-container {
+        width: 90%;
+    }
+    .modal-text {
+        font-size: 1.4rem;
+    }
+    .modal-button {
+        font-size: 1.05rem;
+        height: 35px;
+        width: 70px;
+    }
+    .addtodo-component input {
+        padding-left: 30px;
+    }
+    .text-button.add-button {
+        border-radius: 0 var(--item-border-radius) var(--item-border-radius) 0;
+    }
+    .button-container {
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    .edit-button {
+        margin: 0;
+    }
+    .delete-button {
+        margin: 0;
+    }
+    .option-button {
+        flex-direction: column;
+        justify-content: start;
+    }
+    .option-description {
+        width: 100%;
+        height: 50px;
+    }
+    .option-value {
+        margin: 0;
+    }
+    .footer-button-container {
+        padding-right: 10px;
+    } 
+    .settings .save button {
+        padding: 0 calc(var(--item-height) - 45px);
+    }
+}
+
+@media screen and (max-width: 350px) {
+    :root {
+        --title-letter-spacing: 4px;
+        --title-font-size: 28px;
+        --header-button-size: 30px;
+        --menu-icon-size: 26px;
+        --option-font-size: 1rem;
+    }
+    .footer-button-container {
+        width: 100%;
+        padding-right: 0;
+    }
+    .delete-all-button {
+        margin-right: 10px;
+    }
+    .menu-item {
+        font-size: 1.1rem;
+    }
+}
+@media screen and (max-width: 300px) {
+    :root {
+        --title-font-size: 23px;
+        --item-size: 30px;
+        --app-spacing-y: 10px;
+        --header-height: 40px;
+    }
+    .addtodo-component input {
+        padding-left: 15px;
+    }
+    .delete-all-button {
+        margin-right: 5px;
+    }
+}
+
+@media screen and (max-width: 280px) {
+    :root {
+        --header-button-left: 15px;
+        --item-size: 30px;
+        --app-spacing-y: 10px;
+    }
+    .modal-text {
+        font-size: 1.3rem;
+    }
+    .modal-button {
+        font-size: 1rem;
+        height: 32px;
+        width: 65px;
+    }
+    .addtodo-component {
+        height: 100px;
+        flex-direction: column;
+    }
+
+    .addtodo-component input {
+        border: 1px solid var(--color6);
+        border-radius: var(--item-border-radius) var(--item-border-radius) 0 0;
+        border-bottom: none;
+        width: 100%;
+        padding: 20px;
+        margin: auto;
+        text-align: center;
+    }
+    .text-button.add-button {
+        flex: 0 0 40px;
+        border: 1px solid var(--color6);
+        border-radius: 0 0 var(--item-border-radius) var(--item-border-radius);
+        width: 100%;
+        padding: 0;
+    }
+    .footer-button-container {
+        margin-top: 30px;
+        flex-direction: column;
+    }
+    .footer-button {
+        font-size: 0.95rem;
+        margin: 8px 0;
+    }
+    .delete-all-button {
+        margin-right: 0;
+    }
+    body {
+        min-width: 240px;
+    }
+}

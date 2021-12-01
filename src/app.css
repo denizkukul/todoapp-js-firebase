@@ -1,0 +1,249 @@
+/* App */
+.app {
+    visibility: hidden;
+    box-sizing: border-box;
+    position: relative;
+    height: 100%;
+    background-color: var(--color3);
+    padding-top: calc(var(--header-height) + var(--app-spacing-y-large));
+}
+
+.app-visible .app {
+    visibility: visible;
+}
+
+/* Todo List */
+.todolist {
+    margin: 0 var(--app-spacing-x) 0;
+    transition: margin var(--transition-time);
+}
+
+.list-visible .todolist {
+    margin: 0 var(--app-spacing-x) var(--app-spacing-y-normal);
+}
+
+/* Todo Component */
+.item-container {
+    padding: var(--item-space-y) 0;
+    transition: padding var(--transition-time);
+}
+
+.todo {
+    display: flex;
+    align-items: center;
+    height: var(--item-height);
+    background-color: var(--color1);
+    border-radius: var(--item-border-radius);
+    overflow: hidden;
+    opacity: 1;
+    transition: box-shadow var(--transition-time), border var(--transition-time), height var(--transition-time), opacity var(--transition-time);
+}
+
+/* Check container */
+.check-container {
+    box-sizing: border-box;
+    flex: 0 0 var(--check-container-width);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border: 1px solid var(--color6);
+    border-right: none;
+    border-radius: var(--item-border-radius) 0 0 var(--item-border-radius);
+}
+
+.check-button span.material-icons {
+    opacity: 0;
+    transition: opacity var(--transition-time);
+}
+
+.completed .check-button span.material-icons {
+    opacity: 1;
+}
+
+/* Value container */
+.value-container {
+    box-sizing: border-box;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    border-top: 1px solid var(--color6);
+    border-bottom: 1px solid var(--color6);
+    color: var(--color8);
+    padding-right: var(--item-space-y);
+    word-break: break-all;
+}
+
+.todo-value {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-size: var(--app-font-size);
+    color: var(--color8);
+    transition: color var(--transition-time);
+}
+
+.completed .todo-value{
+    text-decoration: line-through;
+    color: var(--color7);
+}
+
+/* Button container */
+.button-container{
+    box-sizing: border-box;
+    flex: 0 0 var(--button-container-width);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    height: 100%;
+    border: 1px solid var(--color6);
+    border-left: none;
+    border-radius: 0 var(--item-border-radius) var(--item-border-radius) 0;
+    color: var(--color8);
+}
+
+.check-button {
+    padding-top: 2px;
+}
+.edit-button {
+    margin-left: var(--icon-padding);
+}   
+.delete-button { 
+    margin-right: var(--icon-padding);
+}
+
+/* Edit Component */
+.edit {
+    display: flex;
+    align-items: center;
+    height: var(--item-height);
+    background-color: var(--color1);
+    border-radius: var(--item-border-radius);
+    overflow: hidden;
+    transition: box-shadow var(--transition-time), border var(--transition-time), height var(--transition-time), opacity var(--transition-time);
+}
+
+.edit .icon-button:hover,
+.edit .icon-button:focus-visible {
+    cursor: default;
+    box-shadow: none;
+}
+
+.input-container {
+    box-sizing: border-box;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid var(--color6);
+    border-bottom: 1px solid var(--color6);
+    padding-right: var(--item-space-y);
+    height: 100%;
+    word-break: break-all;
+}
+
+.input-container input {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    font-size: var(--app-font-size);
+    color: var(--color8);
+    border: none;
+    outline: none;
+}
+
+.text-button.save-button {
+    box-sizing: border-box;
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    right: -2px;
+    height: calc(var(--item-height) + 2);
+    width: 0;
+    background-color: var(--color1);
+    border: 1px solid var(--color6);
+    border-radius: 0 var(--item-border-radius) var(--item-border-radius) 0;
+    z-index: 1;
+    transition: width var(--transition-time), background-color var(--transition-time);
+}
+
+.text-button.save-button:hover,
+.text-button.save-button:focus-visible {
+    cursor: pointer;
+    background-color: var(--color5);
+    transition: width var(--transition-time), background-color var(--transition-time);
+}
+
+.text-button.save-button:active {
+    background-color: var(--color7);
+    transition: width var(--transition-time), background-color 0s;
+}
+
+/* Transitions */
+.transitioning .icon-button:hover,
+.transitioning .icon-button:focus-visible {
+    cursor: default;
+    box-shadow: none;
+}
+
+/* Add Item Transition */
+.new-item.item-container {
+    padding: 0;
+}
+
+.new-item .todo{
+    height: 0;
+    opacity: 0;
+    border: 0px solid var(--color6);
+}
+
+/* Edit Item Transition */
+.editing .icon-button {
+    opacity: 0;
+}
+
+.editing .edit {
+    box-shadow: 0 0 var(--item-box-shadow-blur) var(--item-box-shadow-spread) var(--color6);
+}
+
+.editing .todo-value {
+    color: var(--color8);
+}
+
+.editing .save-button {
+    width: calc(var(--button-container-width) + 1px);
+}
+
+/* Delete Item Transition */
+.deleting.item-container {
+    padding: 0;
+}
+
+.deleting .todo{
+    height: 0;
+    opacity: 0;
+    border: 0px solid var(--color6);
+}
+
+
+/* Delete All - Delete Completed */
+
+.force-delete.item-container .edit{
+    height: 0;
+    opacity: 0;
+    border: 0px solid var(--color6);
+}
+
+.force-delete.item-container {
+    padding: 0;
+}
+
+.force-delete.item-container .todo{
+    height: 0;
+    opacity: 0;
+    border: 0px solid var(--color6);
+}

@@ -1,0 +1,37 @@
+/* Add-Todo Component */
+.addtodo-component {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: var(--item-height);
+    margin: 0 var(--app-spacing-x) var(--app-spacing-y-normal);
+    border-radius: var(--item-border-radius);
+    background-color: var(--color3);
+    transition: box-shadow var(--transition-time);
+}
+
+.addtodo-component:focus-within {
+    box-shadow: 0 0 var(--item-box-shadow-blur) var(--item-box-shadow-spread) var(--color6);
+}
+
+.addtodo-component input {
+    box-sizing: border-box;
+    border-radius: var(--item-border-radius) 0 0 var(--item-border-radius);
+    flex: 1 1 auto;
+    border: 1px solid var(--color6);
+    outline: none;
+    height: 100%;
+    padding: 0 var(--item-space-y) 0 var(--check-container-width);
+    word-break: break-all;
+}
+
+.text-button.add-button {
+    display: block;
+    flex: 0 0 var(--button-container-width);
+    height: 100%;
+    border: 1px solid var(--color6);
+    border-left: none;
+    border-radius: 0 var(--item-border-radius) var(--item-border-radius) 0;
+    background-color: var(--color1);
+    transition: background-color var(--transition-time);
+}

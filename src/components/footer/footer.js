@@ -1,8 +1,9 @@
 import deleteAll from "../../functions/deleteAll";
 import deleteCompleted from "../../functions/deleteCompleted";
 import showModal from "../../functions/showModal"
-import bindTouchAndClick from "../../functions/bindTouchAndClick";
+import bindButtonLogic from "../../functions/bindButtonLogic";
 import { deleteCompletedButton, deleteAllButton } from "../../domShortcuts";
+import { footerButtonStates } from "../../functions/buttonTypes";
 import "./footer.css";
 
 // Footer Buttons
@@ -17,8 +18,8 @@ const clearAllClicked = () => {
 }
 
 const bindFooterButtons = () => {
-    bindTouchAndClick(deleteCompletedButton, deleteCompleted);
-    bindTouchAndClick(deleteAllButton, clearAllClicked);
+    bindButtonLogic(deleteCompletedButton, footerButtonStates, deleteCompleted);
+    bindButtonLogic(deleteAllButton, footerButtonStates, clearAllClicked);
 }
 
 export default bindFooterButtons;

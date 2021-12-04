@@ -57,7 +57,7 @@
 
     /* Footer */
     --footer-padding-bottom: calc(var(--app-spacing-y) * 3);
-
+    --footer-button-active: calc(var(--text-button-font-size) + 2px);
 
     /* Settings */
     --option-font-size: 1.05rem;

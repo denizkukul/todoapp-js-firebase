@@ -123,13 +123,6 @@
     align-items: center;
     font-size: 20px;
     color: var(--color8);
-    transition: background-color var(--transition-time);
-}
-
-.menu-item:hover,
-.menu-item:focus-visible {
-    background-color: var(--color5);
-    cursor: pointer;
 }
 
 .menu-item .material-icons {
@@ -138,10 +131,10 @@
     font-size: var(--menu-icon-size);
 }
 
-.sign-out-button {
+.toggle-login-button {
     border-bottom: none;
 }
-.sign-out-button span.material-icons{
+.toggle-login-button span.material-icons{
     margin-left: calc(var(--header-button-left) + 14px);
     margin-right: 16px;
 }

@@ -19,8 +19,8 @@ export const gotoTopButton = document.querySelector(".goto-top-button");
 export const menu = document.querySelector(".menu");
 export const settingsButton = document.querySelector(".settings-button");
 export const aboutButton = document.querySelector(".about-button");
-export const signOutButton = document.querySelector(".sign-out-button");
-export const menuItems = [menuButton, settingsButton, aboutButton, signOutButton];
+export const toggleLoginButton = document.querySelector(".toggle-login-button");
+export const menuItems = [menuButton, settingsButton, aboutButton, toggleLoginButton];
 
 //Modal
 export const modal = document.querySelector(".modal");

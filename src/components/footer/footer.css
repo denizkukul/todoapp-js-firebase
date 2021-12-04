@@ -38,17 +38,6 @@
     transition: var(--half-transition-time);
 }
 
-
-.footer-button:hover,
-.footer-button:focus-visible {
-    cursor: default;
-}
-
-.list-visible .footer-button:hover,
-.list-visible .footer-button:focus-visible {
-    cursor: pointer;
-}
-
 .list-visible .footer-button:hover::after,
 .list-visible .footer-button:focus-visible::after {
     width: 100%;

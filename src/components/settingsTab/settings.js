@@ -1,12 +1,11 @@
-import bindTouchAndClick from "../../functions/bindTouchAndClick";
-import changeTab from "../../functions/changeTab";
 import { ref, set } from "firebase/database";
 import { db, currentUID } from "../../index";
 import { options, saveSettingsButton, todoApp, backButton, menuButton } from "../../domShortcuts";
 import { headerButtonStates, optionButtonStates, textButtonStates } from "../../functions/buttonTypes";
 import { toggleGotoTopButton } from "../header/header";
-import "./settings.css";
+import changeTab from "../../functions/changeTab";
 import bindButtonLogic from "../../functions/bindButtonLogic";
+import "./settings.css";
 
 var userSettingsUpdate = {};
 

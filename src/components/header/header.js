@@ -1,12 +1,12 @@
 import bindTouchAndClick from "../../functions/bindTouchAndClick";
 import updateOptionButtons from "../../functions/updateOptionButtons";
 import changeTab from "../../functions/changeTab";
-import { settings, settingsButton, appContainer, gotoTopButton, menuItems, backButton, about, aboutButton, menu, menuButton, todoApp, signOutButton } from "../../domShortcuts";
+import { settings, settingsButton, appContainer, gotoTopButton, menuItems, backButton, about, aboutButton, menu, menuButton, todoApp, toggleLoginButton } from "../../domShortcuts";
 import { signOut } from "firebase/auth";
 import { auth } from "../../index";
-import "./header.css";
 import bindButtonLogic from "../../functions/bindButtonLogic";
-import { headerButtonStates } from "../../functions/buttonTypes";
+import { headerButtonStates, menuButtonStates } from "../../functions/buttonTypes";
+import "./header.css";
 
 
 // Header
@@ -14,7 +14,6 @@ import { headerButtonStates } from "../../functions/buttonTypes";
 const clickedOutsideMenu = (e) => {
     let target = e.target.closest("button");
     if (!menuItems.includes(target)) {
-        console.log("clicked outside if passed");
         window.removeEventListener("click", clickedOutsideMenu);
         hideMenu();
     }
@@ -67,32 +66,28 @@ const menuFocusout = (e) => {
 }
 
 // Menu Click Handler
-const menuSelect = (e) => {
+const goToSettings = (e) => {
     if (menu.classList.contains("transitioning")) {
         return
     }
-    let target = e.target.closest("button")
-    if (target === settingsButton) {
-        changeTab(settings);
-    }
-    else if (target === aboutButton) {
-        changeTab(about);
-    }
+    changeTab(settings);
     headerButtonStates.setButtonDisabled(menuButton);
     headerButtonStates.setButtonEnabled(backButton);
     headerButtonStates.setButtonDisabled(gotoTopButton);
-
-    if (target === signOutButton) {
-        signOut(auth);
-        appContainer.style.display = "none";
-        appContainer.style.visibility = "hidden";
+}
+const goToAbout = (e) => {
+    if (menu.classList.contains("transitioning")) {
+        return
     }
-    e.stopPropagation();
-
-
-    if (userSettings.enableAnimations) {
-        toggleMenu();
-    }
+    changeTab(about);
+    headerButtonStates.setButtonDisabled(menuButton);
+    headerButtonStates.setButtonEnabled(backButton);
+    headerButtonStates.setButtonDisabled(gotoTopButton);
+}
+const toggleLogin = (e) => {
+    signOut(auth);
+    appContainer.style.display = "none";
+    appContainer.style.visibility = "hidden";
 }
 
 //If animations enabled handle tabs after animations end
@@ -146,7 +141,9 @@ const bindHeader = () => {
     settings.addEventListener("transitionend", tabTransitionEnd);
     about.addEventListener("transitionend", tabTransitionEnd);
     menu.addEventListener("transitionend", menuTransitionEnd);
-    bindTouchAndClick(menu, menuSelect);
+    bindButtonLogic(settingsButton, menuButtonStates, goToSettings);
+    bindButtonLogic(aboutButton, menuButtonStates, goToAbout);
+    bindButtonLogic(toggleLoginButton, menuButtonStates, toggleLogin);
     bindButtonLogic(menuButton, headerButtonStates, toggleMenu);
     bindButtonLogic(gotoTopButton, headerButtonStates, scrollToTop);
     bindButtonLogic(backButton, headerButtonStates, backButtonClicked);

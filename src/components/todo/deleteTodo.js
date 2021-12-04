@@ -1,8 +1,8 @@
-import updateListVisibility from "../../functions/updateListVisibility";
 import { todoList } from "../../domShortcuts";
 import { db, currentUID } from "../../index";
 import { ref, set } from "firebase/database";
-import { textButtonStates, iconButtonStates } from "../../functions/buttonTypes";
+import { iconButtonStates } from "../../functions/buttonTypes";
+import updateListVisibility from "../../functions/updateListVisibility";
 
 
 const deletingCompleted = (e) => {

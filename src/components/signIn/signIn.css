@@ -13,23 +13,11 @@
 }
 
 .sign-in button {
+    color: var(--color8);
     font-size: 1rem;
-    color: var(--color1);
-    background-color: var(--color8);
     border: none;
     outline: none;
     padding: 10px;
     border-radius: 5px;
     margin: 10px;
-}
-
-.sign-in button:hover,
-.sign-in button:focus-visible {
-    background-color: var(--color7);
-    cursor: pointer;
-}
-
-.sign-in button:active {
-    color: var(--color9);
-    background-color: var(--color8);
 }

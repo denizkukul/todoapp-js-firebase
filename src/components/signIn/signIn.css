@@ -5,11 +5,11 @@
     min-height: 100vh;
 }
 
-.sign-in-buttons {
+.sign-in-buttons { 
     display: flex;
     flex-direction: column;
     width: 250px;
-    margin: auto;
+    margin: 0 auto 200px;
 }
 
 .sign-in button {
@@ -20,6 +20,7 @@
     outline: none;
     padding: 10px;
     border-radius: 5px;
+    margin: 10px;
 }
 
 .sign-in button:hover,

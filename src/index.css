@@ -14,13 +14,14 @@
     /* Transition Durations */
     --transition-time: 0ms;
     --half-transition-time: calc(var(--transition-time) / 2);
-    --options-transition-time: calc(var(--transition-time) / 4);
+    --option-transition-time: calc(var(--transition-time) / 6);
     
     /* Header*/
     --header-height: 80px;
     
     /* Header Button */
-    --header-button-size: 40px;
+    --header-button-icon-size: 40px;
+    --header-button-size: 55px;
     --header-button-left: var(--app-spacing-x);
     
     /* Title */
@@ -36,8 +37,8 @@
     --app-min-width: 900px;
     --app-spacing-x: 60px;
     --app-spacing-y: 15px;
-    --app-spacing-y-normal: calc(var(--app-spacing-y) * 1.5);
-    --app-spacing-y-large: calc(var(--app-spacing-y) * 3);
+    --app-spacing-y-inner: calc(var(--app-spacing-y) * 1.5);
+    --app-spacing-y-outer: calc(var(--app-spacing-y) * 3);
     --item-space-y: calc(var(--app-spacing-y));
 
     /* Todo && Edit Components */
@@ -84,6 +85,7 @@
 html {
     scroll-behavior: smooth;
     scrollbar-width: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -119,6 +121,11 @@ span.material-icons {
     color: var(--color8);
 }
 
+button {
+    background-color: var(--color1);
+    transition: all var(--half-transition-time);
+}
+
 button:focus {
     outline: none;
 }
@@ -130,24 +137,12 @@ button:focus {
     align-items: center;
     background-color: var(--color1);
     border: 1px solid var(--color6);
-}
-
-.icon-button:hover,
-.icon-button:focus-visible {
-    cursor: pointer;
-    box-shadow: 0 0 5px 4px var(--color6);
-}
-
-.app-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: var(--icon-button-size);
     height: var(--icon-button-size);
     border-radius: 50%;
-    transition: box-shadow var(--transition-time), opacity var(--transition-time);
 }
-.app-button span.material-icons {
+
+.icon-button span.material-icons {
     font-size: var(--icon-size);
 }
 
@@ -156,16 +151,16 @@ button:focus {
     left: var(--header-button-left);
     height: var(--header-button-size);
     width: var(--header-button-size);
-    background-color: var(--header-background-color);
+    background-color: var(--color2);
     border: none;
-    border-radius: 10px;
-    transition: box-shadow var(--transition-time), opacity var(--half-transition-time) linear, visibility var(--half-transition-time) linear;
+    border-radius: 50%;
+
 }
 
 .header-button span.material-icons {
-    font-size: var(--header-button-size);
-    height: var(--header-button-size);
-    width: var(--header-button-size);
+    font-size: var(--header-button-icon-size);
+    height: var(--header-button-icon-size);
+    width: var(--header-button-icon-size);
 }
 
 .text-button {
@@ -173,21 +168,6 @@ button:focus {
     border: 1px solid var(--color6);
     background-color: var(--color1);
     color: var(--color8);
-    cursor: pointer;
-}
-
-.text-button:hover,
-.text-button:focus-visible {
-    color: var(--color9);
-    cursor: pointer;
-    background-color: var(--color5);
-    transition: background-color var(--transition-time), color var(--transition-time);
-}
-
-.text-button:active {
-    color: var(--color9);
-    background-color: var(--color7);
-    transition: background-color 0s;
 }
 
 /* Progress-Indicator */
@@ -271,10 +251,6 @@ button:focus {
         height: 35px;
         width: 75px;
     }
-
-    .menu-item .material-icons {
-        margin-left: calc(var(--header-button-left) + 2px);
-    }
     .add-button {
         padding-right: 2px;
     }
@@ -307,12 +283,13 @@ button:focus {
         --header-height: 60px;
         --title-font-size: 30px;
         --title-letter-spacing: 8px;
-        --header-button-size: 35px;
+        --header-button-icon-size: 35px;
+        --header-button-size: 48px;
         --menu-icon-size: 30px;
         --option-margin-left: 30px;
     }
     .title{
-        padding-left: 10px;
+        left: 5px;
     }
     .menu-item {
         font-size: 1.1rem;
@@ -326,6 +303,9 @@ button:focus {
     }
     .info {
         padding: 20px 30px;
+    }
+    .header-button span.material-icons{
+        padding-bottom: 2px;
     }
 }
 
@@ -344,6 +324,9 @@ button:focus {
         --option-icon-position: 32px;
         --option-icon-margin: 7px;
     }
+    .title{
+        left: 8px;
+    }
     .modal-window-container {
         width: 90%;
     }
@@ -354,6 +337,12 @@ button:focus {
         font-size: 1.05rem;
         height: 35px;
         width: 70px;
+    }
+    .menu-item .material-icons{
+        margin-right: 15px;
+    }
+    .sign-out-button {
+        margin-right: 12px;
     }
     .addtodo-component input {
         padding-left: 30px;
@@ -394,9 +383,10 @@ button:focus {
     :root {
         --title-letter-spacing: 4px;
         --title-font-size: 28px;
-        --header-button-size: 30px;
         --menu-icon-size: 26px;
         --option-font-size: 1rem;
+        --header-button-icon-size: 30px;
+        --header-button-size: 40px;
     }
     .footer-button-container {
         width: 100%;
@@ -408,6 +398,14 @@ button:focus {
     .menu-item {
         font-size: 1.1rem;
     }
+    .menu-item .material-icons {
+        font-size: var(--header-button-icon-size);
+        margin-left: 25px;
+    }
+    .sign-out-button span.material-icons {
+        margin-left: calc(var(--header-button-left) + 10px);
+        margin-right: 10px;
+    }
 }
 @media screen and (max-width: 300px) {
     :root {
@@ -415,12 +413,22 @@ button:focus {
         --item-size: 30px;
         --app-spacing-y: 10px;
         --header-height: 40px;
+        --header-button-icon-size: 25px;
+        --header-button-size: 30px;
     }
     .addtodo-component input {
         padding-left: 15px;
     }
     .delete-all-button {
         margin-right: 5px;
+    }
+    .menu-item .material-icons {
+        font-size: var(--header-button-icon-size);
+        margin-left: calc(var(--header-button-left) + 3px);
+    }
+    .sign-out-button span.material-icons {
+        margin-left: calc(var(--header-button-left) + 6px);
+        margin-right: 12px;
     }
 }
 
@@ -444,17 +452,18 @@ button:focus {
     }
 
     .addtodo-component input {
-        border: 1px solid var(--color6);
+        flex: 0 0 40px;
         border-radius: var(--item-border-radius) var(--item-border-radius) 0 0;
-        border-bottom: none;
         width: 100%;
         padding: 20px;
         margin: auto;
         text-align: center;
     }
     .text-button.add-button {
+        position: relative;
         flex: 0 0 40px;
-        border: 1px solid var(--color6);
+        border: none;
+        border-top: 1px solid var(--color6);
         border-radius: 0 0 var(--item-border-radius) var(--item-border-radius);
         width: 100%;
         padding: 0;

@@ -20,8 +20,8 @@ export const startApp = () => {
                 }
                 // Create todos
                 for (const todo in todos) {
-                    let container = createItemContainer(todo);
-                    let item = createTodo(todos[todo].value, todos[todo].completed);
+                    let container = createItemContainer(todo, true);
+                    let item = createTodo(todos[todo].value, todos[todo].completed, true);
                     container.appendChild(item);
                     todoList.appendChild(container);
                     todoCount++;

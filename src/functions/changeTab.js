@@ -1,4 +1,4 @@
-import { appContainer, todoApp, settings, backButton } from "../domShortcuts";
+import { appContainer, todoApp, settings } from "../domShortcuts";
 import updateOptionButtons from "./updateOptionButtons";
 
 // Changes tabs between settings, about and app tabs.
@@ -24,7 +24,7 @@ const changeTab = (tab) => {
         }
 
         if (!userSettings.enableAnimations) {
-            backButton.focus();
+            appContainer.classList.remove("app-visible");
         }
     }
 }

@@ -1,33 +1,52 @@
 import bindTouchAndClick from "../../functions/bindTouchAndClick";
 import updateOptionButtons from "../../functions/updateOptionButtons";
 import changeTab from "../../functions/changeTab";
-import { settings, settingsButton, appContainer, gotoTopButton, menuItems, backButton, about, aboutButton, menu, menuButton, todoApp, signOutButton, progresIndicator } from "../../domShortcuts";
+import { settings, settingsButton, appContainer, gotoTopButton, menuItems, backButton, about, aboutButton, menu, menuButton, todoApp, signOutButton } from "../../domShortcuts";
 import { signOut } from "firebase/auth";
 import { auth } from "../../index";
 import "./header.css";
+import bindButtonLogic from "../../functions/bindButtonLogic";
+import { headerButtonStates } from "../../functions/buttonTypes";
 
 
 // Header
 // Menu Button
+const clickedOutsideMenu = (e) => {
+    let target = e.target.closest("button");
+    if (!menuItems.includes(target)) {
+        console.log("clicked outside if passed");
+        window.removeEventListener("click", clickedOutsideMenu);
+        hideMenu();
+    }
+}
+
+const hideMenu = () => {
+    if (!userSettings.enableAnimations) {
+        appContainer.classList.remove("menu-shade");
+    }
+    menu.classList.remove("active");
+    menuButton.removeEventListener("blur", menuFocusout);
+    menu.removeEventListener("focusout", menuFocusout);
+    window.removeEventListener("click", clickedOutsideMenu);
+}
+
+const showMenu = () => {
+    menu.classList.add("active");
+    appContainer.classList.add("menu-shade");
+    menu.addEventListener("focusout", menuFocusout)
+    menuButton.addEventListener("blur", menuFocusout);
+    if (userSettings.enableAnimations) {
+        menu.classList.add("transitioning");
+    }
+    window.addEventListener("click", clickedOutsideMenu)
+}
+
 const toggleMenu = () => {
     if (menu.classList.contains("active")) {
-        // Hide menu
-        if (!userSettings.enableAnimations) {
-            appContainer.classList.remove("menu-shade");
-        }
-        menu.classList.remove("active");
-        menuButton.removeEventListener("blur", menuFocusout);
-        menu.removeEventListener("focusout", menuFocusout)
+        hideMenu();
     }
     else {
-        // Show menu
-        menu.classList.add("active");
-        appContainer.classList.add("menu-shade");
-        menu.addEventListener("focusout", menuFocusout)
-        menuButton.addEventListener("blur", menuFocusout);
-        if (userSettings.enableAnimations) {
-            menu.classList.add("transitioning");
-        }
+        showMenu();
     }
 }
 
@@ -38,12 +57,12 @@ const menuTransitionEnd = (e) => {
     if (window.getComputedStyle(menu).getPropertyValue("height") === "0px") {
         appContainer.classList.remove("menu-shade");
     }
-    menu.classList.remove("transitioning")
+    menu.classList.remove("transitioning");
 }
 
 const menuFocusout = (e) => {
     if (!menuItems.includes(e.relatedTarget)) {
-        toggleMenu();
+        hideMenu();
     }
 }
 
@@ -59,12 +78,18 @@ const menuSelect = (e) => {
     else if (target === aboutButton) {
         changeTab(about);
     }
-    else if (target === signOutButton) {
+    headerButtonStates.setButtonDisabled(menuButton);
+    headerButtonStates.setButtonEnabled(backButton);
+    headerButtonStates.setButtonDisabled(gotoTopButton);
+
+    if (target === signOutButton) {
         signOut(auth);
         appContainer.style.display = "none";
         appContainer.style.visibility = "hidden";
     }
     e.stopPropagation();
+
+
     if (userSettings.enableAnimations) {
         toggleMenu();
     }
@@ -75,7 +100,6 @@ const tabTransitionEnd = (e) => {
     if (e.target === settings || e.target === about) {
         if (window.getComputedStyle(e.target).getPropertyValue("height") !== "0px") {
             appContainer.classList.remove("app-visible");
-            backButton.focus();
         }
         else {
             appContainer.classList.remove("tab-shade");
@@ -88,17 +112,26 @@ const tabTransitionEnd = (e) => {
 
 // Back Button
 const backButtonClicked = () => {
+    hideMenu();
     changeTab(todoApp);
+    headerButtonStates.setButtonDisabled(backButton);
+    headerButtonStates.setButtonEnabled(menuButton);
+    toggleGotoTopButton(true);
 }
 
 // Goto Top Button
 // Show goto-top button if page is scrolled down 
-const toggleGotoTopButton = () => {
-    if (window.scrollY > 0) {
-        gotoTopButton.classList.add("scrolled");
+export const toggleGotoTopButton = (back = false) => {
+    if (window.scrollY > 0 && document.querySelector(".app-container").classList.contains("app-visible")) {
+        if (back === true) {
+            headerButtonStates.setButtonEnabled(gotoTopButton, true);
+        }
+        else {
+            headerButtonStates.setButtonEnabledNoDelay(gotoTopButton, true);
+        }
     }
     else {
-        gotoTopButton.classList.remove("scrolled");
+        headerButtonStates.setButtonDisabled(gotoTopButton);
     }
 }
 // Goto top button scroll to top
@@ -114,9 +147,9 @@ const bindHeader = () => {
     about.addEventListener("transitionend", tabTransitionEnd);
     menu.addEventListener("transitionend", menuTransitionEnd);
     bindTouchAndClick(menu, menuSelect);
-    bindTouchAndClick(menuButton, toggleMenu);
-    bindTouchAndClick(gotoTopButton, scrollToTop);
-    bindTouchAndClick(backButton, backButtonClicked);
+    bindButtonLogic(menuButton, headerButtonStates, toggleMenu);
+    bindButtonLogic(gotoTopButton, headerButtonStates, scrollToTop);
+    bindButtonLogic(backButton, headerButtonStates, backButtonClicked);
 }
 
 export default bindHeader;

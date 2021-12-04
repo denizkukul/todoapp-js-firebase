@@ -2,8 +2,11 @@ import bindTouchAndClick from "../../functions/bindTouchAndClick";
 import changeTab from "../../functions/changeTab";
 import { ref, set } from "firebase/database";
 import { db, currentUID } from "../../index";
-import { options, saveSettingsButton, todoApp } from "../../domShortcuts";
+import { options, saveSettingsButton, todoApp, backButton, menuButton } from "../../domShortcuts";
+import { headerButtonStates, optionButtonStates, textButtonStates } from "../../functions/buttonTypes";
+import { toggleGotoTopButton } from "../header/header";
 import "./settings.css";
+import bindButtonLogic from "../../functions/bindButtonLogic";
 
 var userSettingsUpdate = {};
 
@@ -20,6 +23,9 @@ const saveSettings = () => {
     transitionTime = userSettings.enableAnimations ? defaultTransitionTime : 0;
     document.documentElement.style.setProperty("--transition-time", `${transitionTime}ms`);
     changeTab(todoApp);
+    headerButtonStates.setButtonDisabled(backButton);
+    headerButtonStates.setButtonEnabled(menuButton);
+    toggleGotoTopButton(true);
 }
 
 const bindSettings = () => {
@@ -28,9 +34,9 @@ const bindSettings = () => {
         if (userSettings[optionName]) {
             option.classList.add("on");
         }
-        bindTouchAndClick(option, toggleOption);
+        bindButtonLogic(option, optionButtonStates, toggleOption);
     })
-    bindTouchAndClick(saveSettingsButton, saveSettings);
+    bindButtonLogic(saveSettingsButton, textButtonStates, saveSettings);
 }
 
 export default bindSettings;

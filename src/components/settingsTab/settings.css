@@ -17,8 +17,8 @@
     height: 100%;
 }
 
-.options {
-    padding: calc(var(--app-spacing-y-large) - var(--item-space-y) + 5px) 0 calc(var(--app-spacing-y-large) - var(--item-space-y));
+.option {
+    padding: calc(var(--app-spacing-y-outer) - var(--item-space-y) + 5px) 0 calc(var(--app-spacing-y-outer) - var(--item-space-y));
     margin: 0 var(--app-spacing-x) 0;
 }
 
@@ -62,12 +62,6 @@
     margin-right: calc(var(--item-size) / 2);
 }
 
-.option-button:hover,
-.option-button:focus-visible {
-    cursor: pointer;
-    box-shadow: 0 0 var(--item-box-shadow-blur) var(--item-box-shadow-spread) var(--color6);
-}
-
 .option-value span.material-icons-outlined {
     position: relative;
     display: flex;
@@ -85,22 +79,22 @@
 .option-value span:nth-of-type(1) {
     opacity: 1;
     left: 0;
-    transition: opacity var(--options-transition-time) linear var(--options-transition-time), left var(--options-transition-time) linear var(--options-transition-time);
+    transition: opacity var(--option-transition-time) linear var(--option-transition-time), left var(--option-transition-time) linear var(--option-transition-time);
 }
 .on .option-value span:nth-of-type(1) {
     opacity: 0;
     left: var(--option-icon-position);
-    transition: opacity var(--options-transition-time) linear, left var(--options-transition-time) linear;
+    transition: opacity var(--option-transition-time) linear, left var(--option-transition-time) linear;
 }
 .option-value span:nth-of-type(2) {
     opacity: 0;
     right: var(--option-icon-position);
-    transition: opacity var(--options-transition-time) linear, right var(--options-transition-time) linear;
+    transition: opacity var(--option-transition-time) linear, right var(--option-transition-time) linear;
 }
 .on .option-value span:nth-of-type(2) {
     opacity: 1;
     right: 0;
-    transition: opacity var(--options-transition-time) linear var(--options-transition-time), right var(--options-transition-time) linear var(--options-transition-time);
+    transition: opacity var(--option-transition-time) linear var(--option-transition-time), right var(--option-transition-time) linear var(--option-transition-time);
 }
 
 .settings .save {

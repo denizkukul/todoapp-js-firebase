@@ -214,3 +214,75 @@ export const optionButtonStates = {
         button.style.transition = "background-color 0s, box-shadow 0s";
     }
 }
+export const footerButtonStates = {
+    setButtonDefault: (button) => {
+        button.style.cursor = "default";
+        button.style.transition = "";
+    },
+    setButtonDefaultImmediate: (button) => {
+        button.style.cursor = "default";
+        button.style.transition = "";
+    },
+    setButtonFocused: (button) => {
+        button.style.cursor = "pointer";
+        button.style.transition = "";
+    },
+    setButtonFocusedImmediate: (button) => {
+        button.style.cursor = "pointer";
+        button.style.transition = "";
+    },
+    setButtonActive: (button) => {
+        button.style.cursor = "pointer";
+        button.style.transition = "";
+    },
+    setButtonDisabled: (button) => {
+        button.style.cursor = "default";
+        button.setAttribute("tabindex", "-1");
+        button.style.transition = "";
+    },
+    setButtonEnabled: (button) => {
+        button.style.cursor = "pointer";
+        button.style.transition = "";
+        button.setAttribute("tabindex", "0");
+    }
+}
+export const menuButtonStates = {
+    setButtonDefault: (button) => {
+        let icon = button.querySelector(".material-icons");
+        button.style.cursor = "default";
+        icon.style.color = "var(--color8)";
+        button.style.color = "var(--color8)";
+        button.style.backgroundColor = "var(--color2)";
+        button.style.transition = "color var(--half-transition-time), background-color var(--half-transition-time)";
+    },
+    setButtonDefaultImmediate: (button) => {
+        let icon = button.querySelector(".material-icons");
+        button.style.cursor = "default";
+        icon.style.color = "var(--color8)";
+        button.style.color = "var(--color8)";
+        button.style.backgroundColor = "var(--color2)";
+    },
+    setButtonFocused: (button) => {
+        let icon = button.querySelector(".material-icons");
+        button.style.cursor = "pointer";
+        icon.style.color = "var(--color8)";
+        button.style.color = "var(--color8)";
+        button.style.backgroundColor = "var(--color5)";
+        button.style.transition = "color var(--half-transition-time), background-color var(--half-transition-time)";
+    },
+    setButtonFocusedImmediate: (button) => {
+        let icon = button.querySelector(".material-icons");
+        button.style.cursor = "pointer";
+        icon.style.color = "var(--color8)";
+        button.style.color = "var(--color8)";
+        button.style.backgroundColor = "var(--color5)";
+    },
+    setButtonActive: (button) => {
+        let icon = button.querySelector(".material-icons");
+        button.style.cursor = "pointer";
+        icon.style.color = "var(--color1)";
+        button.style.color = "var(--color1)";
+        button.style.backgroundColor = "var(--color8)";
+        button.style.transition = "color 0s, background-color 0s";
+    }
+}

@@ -1,7 +1,8 @@
-import bindTouchAndClick from "../../functions/bindTouchAndClick";
 import deleteAll from "../../functions/deleteAll";
 import modalTab from "../../functions/modalTab";
+import bindButtonLogic from "../../functions/bindButtonLogic";
 import { confirmButton, cancelButton, modalShade, modal } from "../../domShortcuts";
+import { textButtonStates } from "../../functions/buttonTypes";
 import "./modal.css"
 
 // Modal window
@@ -16,17 +17,11 @@ const cancelDelete = () => {
     modal.classList.remove("active");
 }
 
-const modalTransitionEnd = (e) => {
-    if (e.target === modal) {
-        confirmButton.focus();
-    }
-}
-
 const bindModal = () => {
-    bindTouchAndClick(modalShade, cancelDelete);
-    bindTouchAndClick(confirmButton, confirmDelete);
-    bindTouchAndClick(cancelButton, cancelDelete);
-    modal.addEventListener("transitionend", modalTransitionEnd);
+    modalShade.addEventListener("click", cancelDelete);
+    modalShade.addEventListener("touchstart", cancelDelete);
+    bindButtonLogic(confirmButton, textButtonStates, confirmDelete);
+    bindButtonLogic(cancelButton, textButtonStates, cancelDelete);
 }
 
 export default bindModal;

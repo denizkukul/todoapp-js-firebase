@@ -3,6 +3,8 @@ import { GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider, signInWit
 import { signInButtons, progresIndicator, signInTab } from "../../domShortcuts";
 import { auth } from "../../index";
 import bindTouchAndClick from "../../functions/bindTouchAndClick";
+import bindButtonLogic from "../../functions/bindButtonLogic";
+import { textButtonStates } from "../../functions/buttonTypes";
 
 const signIn = (e) => {
     let provider
@@ -26,5 +28,5 @@ const signIn = (e) => {
 }
 
 signInButtons.forEach(button => {
-    bindTouchAndClick(button, signIn);
+    bindButtonLogic(button, textButtonStates, signIn);
 })

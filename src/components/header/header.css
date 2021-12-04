@@ -36,31 +36,12 @@
 
 /* Menu-Back Button */
 .menu-button {
-    visibility: hidden;
-    opacity: 0;
+    visibility: visible;
+    opacity: 1;
 }
 .back-button {
     visibility: hidden;
     opacity: 0;
-    transition: opacity var(--half-transition-time) linear, visibility var(--half-transition-time) linear;
-}
-.app-visible .menu-button{
-    visibility: visible;
-    opacity: 1;
-    transition: box-shadow var(--transition-time), opacity var(--half-transition-time) linear var(--half-transition-time), visibility var(--half-transition-time) linear var(--half-transition-time);
-}
-.settings-visible .header .menu-button,
-.about-visible .header .menu-button {
-    visibility: hidden;
-    opacity: 0;
-    transition: box-shadow var(--transition-time), opacity var(--half-transition-time) linear, visibility var(--half-transition-time) linear; 
-}
-
-.settings-visible .back-button,
-.about-visible .back-button {
-    visibility: visible;
-    opacity: 1;
-    transition: box-shadow var(--transition-time), opacity var(--half-transition-time) linear var(--half-transition-time), visibility var(--half-transition-time) linear var(--half-transition-time);
 }
 
 /* Title */
@@ -112,10 +93,6 @@
     opacity: 0;
     transition: opacity var(--transition-time), visibility var(--transition-time);
 }
-.app-visible .goto-top-button.scrolled {
-    visibility: visible;
-    opacity: 1;
-}
 
 /* Menu */
 .menu {
@@ -157,7 +134,7 @@
 
 .menu-item .material-icons {
     margin-right: 20px;
-    margin-left: calc(var(--header-button-left) + 2px);
+    margin-left: calc(var(--header-button-left) + 10px);
     font-size: var(--menu-icon-size);
 }
 
@@ -165,8 +142,8 @@
     border-bottom: none;
 }
 .sign-out-button span.material-icons{
-    margin-left: calc(var(--header-button-left) + 5px);
-    margin-right: 17px;
+    margin-left: calc(var(--header-button-left) + 14px);
+    margin-right: 16px;
 }
 
 /* Settings */
@@ -188,7 +165,7 @@
 }
 
 .options {
-    padding: calc(var(--app-spacing-y-large) - var(--item-space-y) + 5px) 0 calc(var(--app-spacing-y-large) - var(--item-space-y));
+    padding: calc(var(--app-spacing-y-outer) - var(--item-space-y) + 5px) 0 calc(var(--app-spacing-y-outer) - var(--item-space-y));
     margin: 0 var(--app-spacing-x) 0;
 }
 

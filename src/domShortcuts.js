@@ -8,7 +8,7 @@ export const about = document.querySelector(".about");
 export const todoApp = document.querySelector(".app");
 
 //Sign In
-export const googleButton = document.querySelector(".google");
+export const signInButtons = Array.from(document.querySelectorAll(".sign-in button"));
 
 //Header
 export const menuButton = document.querySelector(".menu-button");

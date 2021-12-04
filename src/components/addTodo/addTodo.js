@@ -1,12 +1,13 @@
 import { addButton, addInput, addTodoComponent, todoList } from "../../domShortcuts";
 import { db, currentUID } from "../../index";
 import { set, push, ref } from "firebase/database";
-import bindTouchAndClick from "../../functions/bindTouchAndClick";
-import bindEnter from "../../functions/bindEnter";
 import validateInput from "../../functions/validateInput";
 import createItemContainer from "../../functions/createItemContainer";
 import createTodo from "../todoList/createTodo";
 import updateListVisibility from "../../functions/updateListVisibility";
+import bindButtonLogic from "../../functions/bindButtonLogic";
+import bindInputEnter from "../../functions/bindInputEnter";
+import { textButtonStates, iconButtonStates } from "../../functions/buttonTypes";
 import "./addTodo.css";
 
 // Add-Todo Component
@@ -41,29 +42,34 @@ const addTodo = () => {
     addInput.focus();
     updateListVisibility();
 
+    let buttons = Array.from(todo.querySelectorAll(".icon-button"));
+
+    // If animations are disabled move to the final state
     if (!userSettings.enableAnimations) {
+        container.classList.remove("new-item");
         todoList.appendChild(container);
+        buttons.forEach(button => iconButtonStates.setButtonEnabled(button));
         return
     }
 
     // Animate adding new todo.
     const addingCompleted = (e) => {
-        if (e.target === container) {
-            container.classList.remove("adding", "transitioning");
-            container.removeEventListener("transitionend", addingCompleted);
-        }
+        if (e.target !== container) return;
+        container.removeEventListener("transitionend", addingCompleted);
+        container.classList.remove("adding", "transitioning");
+        buttons.forEach(button => iconButtonStates.setButtonEnabled(button));
     }
 
-    container.classList.add("new-item", "adding", "transitioning");
+    container.classList.add("adding", "transitioning");
     todoList.appendChild(container);
-    setTimeout(() => { container.classList.remove("new-item"); }, 0)
+    setTimeout(() => { container.classList.remove("new-item"); }, 20)
     container.addEventListener("transitionend", addingCompleted);
 }
 
 const bindAddTodo = () => {
     addTodoComponent.addEventListener("focusout", addTodoFocusout);
-    bindTouchAndClick(addButton, addTodo);
-    bindEnter(addInput, addTodo);
+    bindButtonLogic(addButton, textButtonStates, addTodo);
+    bindInputEnter(addInput, addButton, addTodo);
 }
 
 export default bindAddTodo;

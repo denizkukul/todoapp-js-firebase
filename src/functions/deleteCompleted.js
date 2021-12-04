@@ -1,4 +1,4 @@
-import { ref, set } from "firebase/database";
+import { ref, update } from "firebase/database";
 import { todoList } from "../domShortcuts";
 import { db, currentUID } from "../index";
 import updateListVisibility from "./updateListVisibility";
@@ -21,12 +21,15 @@ const deleteCompleted = () => {
         })
     }
     else {
+        let completedIDs = {};
         completedContainers.forEach(container => {
             deleteWithTransition(container);
+            let id = container.getAttribute("id");
+            completedIDs[id] = null;
         })
         //Update firebase database
         let todosRef = ref(db, `${currentUID}/todos`);
-        set(todosRef, null);
+        update(todosRef, completedIDs);
         todoCount -= completedContainers.length;
         updateListVisibility();
     }

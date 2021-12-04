@@ -23,7 +23,7 @@ const auth = getAuth(app);
 var currentUID;
 
 // Global Variables
-window.defaultTransitionTime = 300;
+window.defaultTransitionTime = 500;
 window.userSettings = { enableDrag: true, enableAnimations: true, confirmClearAll: false, newTodoTop: false };
 window.transitionTime = defaultTransitionTime;
 window.todoCount = 0;

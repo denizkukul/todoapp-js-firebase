@@ -5,7 +5,7 @@
     position: relative;
     height: 100%;
     background-color: var(--color3);
-    padding-top: calc(var(--header-height) + var(--app-spacing-y-large));
+    padding-top: calc(var(--header-height) + var(--app-spacing-y-outer));
 }
 
 .app-visible .app {
@@ -19,7 +19,7 @@
 }
 
 .list-visible .todolist {
-    margin: 0 var(--app-spacing-x) var(--app-spacing-y-normal);
+    margin: 0 var(--app-spacing-x) var(--app-spacing-y-inner);
 }
 
 /* Todo Component */
@@ -31,12 +31,14 @@
 .todo {
     display: flex;
     align-items: center;
+    position: relative;
     height: var(--item-height);
     background-color: var(--color1);
+    outline: 1px solid var(--color6);
     border-radius: var(--item-border-radius);
     overflow: hidden;
     opacity: 1;
-    transition: box-shadow var(--transition-time), border var(--transition-time), height var(--transition-time), opacity var(--transition-time);
+    transition: box-shadow var(--half-transition-time), height var(--transition-time), opacity var(--transition-time);
 }
 
 /* Check container */
@@ -47,7 +49,6 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    border: 1px solid var(--color6);
     border-right: none;
     border-radius: var(--item-border-radius) 0 0 var(--item-border-radius);
 }
@@ -68,8 +69,6 @@
     display: flex;
     align-items: center;
     height: 100%;
-    border-top: 1px solid var(--color6);
-    border-bottom: 1px solid var(--color6);
     color: var(--color8);
     padding-right: var(--item-space-y);
     word-break: break-all;
@@ -99,8 +98,6 @@
     justify-content: space-between;
     position: relative;
     height: 100%;
-    border: 1px solid var(--color6);
-    border-left: none;
     border-radius: 0 var(--item-border-radius) var(--item-border-radius) 0;
     color: var(--color8);
 }
@@ -115,36 +112,8 @@
     margin-right: var(--icon-padding);
 }
 
-/* Edit Component */
-.edit {
-    display: flex;
-    align-items: center;
-    height: var(--item-height);
-    background-color: var(--color1);
-    border-radius: var(--item-border-radius);
-    overflow: hidden;
-    transition: box-shadow var(--transition-time), border var(--transition-time), height var(--transition-time), opacity var(--transition-time);
-}
-
-.edit .icon-button:hover,
-.edit .icon-button:focus-visible {
-    cursor: default;
-    box-shadow: none;
-}
-
-.input-container {
-    box-sizing: border-box;
-    flex: 1 1 auto;
-    display: flex;
-    align-items: center;
-    border-top: 1px solid var(--color6);
-    border-bottom: 1px solid var(--color6);
-    padding-right: var(--item-space-y);
-    height: 100%;
-    word-break: break-all;
-}
-
-.input-container input {
+/* Edit State */
+.value-container input {
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -159,28 +128,16 @@
 .text-button.save-button {
     box-sizing: border-box;
     position: absolute;
-    top: -1px;
-    bottom: -1px;
-    right: -2px;
-    height: calc(var(--item-height) + 2);
-    width: 0;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
     background-color: var(--color1);
-    border: 1px solid var(--color6);
+    border: none;
+    border-left: 1px solid var(--color6);
     border-radius: 0 var(--item-border-radius) var(--item-border-radius) 0;
     z-index: 1;
-    transition: width var(--transition-time), background-color var(--transition-time);
-}
-
-.text-button.save-button:hover,
-.text-button.save-button:focus-visible {
-    cursor: pointer;
-    background-color: var(--color5);
-    transition: width var(--transition-time), background-color var(--transition-time);
-}
-
-.text-button.save-button:active {
-    background-color: var(--color7);
-    transition: width var(--transition-time), background-color 0s;
+    transition: right var(--transition-time), background-color var(--transition-time);
 }
 
 /* Transitions */
@@ -206,8 +163,8 @@
     opacity: 0;
 }
 
-.editing .edit {
-    box-shadow: 0 0 var(--item-box-shadow-blur) var(--item-box-shadow-spread) var(--color6);
+.editing .todo {
+    box-shadow: 0 0 0 4px var(--color6);
 }
 
 .editing .todo-value {
@@ -215,7 +172,7 @@
 }
 
 .editing .save-button {
-    width: calc(var(--button-container-width) + 1px);
+    right: 0;
 }
 
 /* Delete Item Transition */

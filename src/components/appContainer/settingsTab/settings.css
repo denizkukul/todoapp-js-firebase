@@ -1,0 +1,152 @@
+/* Settings */
+.settings {
+    scrollbar-width: none;
+    visibility: hidden;
+    position: fixed;
+    overflow: scroll;
+    top: var(--header-height);
+    height: 0;
+    background-color: var(--color3);
+    max-width: var(--app-container-max-width);
+    width: 100%;
+    z-index: 4;
+    transition: visibility var(--transition-time), height var(--transition-time);
+}
+
+.settings.active{
+    visibility: visible;
+    height: 100%;
+}
+
+.options {
+    padding: calc(var(--app-spacing-y-outer) - var(--item-space-y)) 0 calc(var(--app-spacing-y-outer) - var(--item-space-y));
+    margin: 0 var(--app-spacing-x) 0;
+}
+
+.option {
+    padding: var(--item-space-y) 0;
+} 
+
+.option-button {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--item-height);
+    background-color: var(--color1);
+    border: 1px solid var(--color6);
+    border-radius: var(--item-border-radius);
+    overflow: hidden;
+    opacity: 1;
+}
+
+.option-button:not([tabindex="-1"]):hover,
+.option-button:not([tabindex="-1"]):focus-visible {
+    background-color: var(--color5);
+}
+
+.option-button:not([tabindex="-1"]):active {
+    background-color: var(--color7);
+}
+
+.option-description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--option-font-size);
+    margin-left: var(--option-margin-left);
+    height: 100%;
+    line-height: 100%;
+    color: var(--color8);
+}
+
+.option-value {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: var(--option-value-width);
+    height: var(--option-value-height);
+    background-color: var(--color4);
+    border-radius: var(--app-border-radius);
+    margin-right: calc(var(--item-size) / 2);
+    transition: background-color var(--fast-transition-time);
+}
+
+.option-button:not([tabindex="-1"]):hover .option-value,
+.option-button:not([tabindex="-1"]):focus-visible .option-value{
+    background-color: var(--color7);
+}
+.option-button:not([tabindex="-1"]):active .option-value {
+    background-color: var(--color1);
+}
+.option-button:not([tabindex="-1"]):active .option-value span.material-icons-outlined {
+    color: var(--color9);
+}
+
+.option-value span.material-icons-outlined {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    background-color: var(--color1);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    margin: 0 var(--option-icon-margin) 0 var(--option-icon-margin);
+    color: var(--color8);
+}
+
+.option-value span:nth-of-type(1) {
+    opacity: 1;
+    left: 0;
+    transition: opacity var(--option-transition-time) linear var(--option-transition-time),
+                left var(--option-transition-time) linear var(--option-transition-time),
+                color var(--fast-transition-time);
+}
+.on .option-value span:nth-of-type(1) {
+    opacity: 0;
+    left: var(--option-icon-position);
+    transition: opacity var(--option-transition-time) linear,
+                left var(--option-transition-time) linear,
+                color var(--fast-transition-time);
+}
+.option-value span:nth-of-type(2) {
+    opacity: 0;
+    right: var(--option-icon-position);
+    transition: opacity var(--option-transition-time) linear,
+                right var(--option-transition-time) linear,
+                color var(--fast-transition-time);
+}
+.on .option-value span:nth-of-type(2) {
+    opacity: 1;
+    right: 0;
+    transition: opacity var(--option-transition-time) linear var(--option-transition-time),
+                right var(--option-transition-time) linear var(--option-transition-time),
+                color var(--fast-transition-time);
+}
+
+.settings .save {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 12%;
+}
+
+.save-settings-button {
+    box-sizing: border-box;
+    height: calc(var(--item-height) - 20px);
+    padding: 0 calc(var(--item-height) - 10px);
+    border-radius: var(--item-border-radius);
+    margin-bottom: var(--savebutton-margin-bottom);
+}
+
+.save-settings-button:hover,
+.save-settings-button:focus-visible {
+    background-color: var(--color5);
+}
+
+.save-settings-button:active {
+    background-color: var(--color7);
+}
+

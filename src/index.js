@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { startApp, clearApp } from "./app.js";
-import showSignIn from "./functions/showSignIn";
+import { getUserData, clearUserData } from "./app.js";
+import bindAll from "./components/bindAll.js";
 import "./index.css";
 
 const firebaseConfig = {
@@ -19,26 +19,34 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const auth = getAuth(app);
-
 var currentUID;
 
 // Global Variables
-window.defaultTransitionTime = 500;
-window.userSettings = { enableDrag: true, enableAnimations: true, confirmClearAll: false, newTodoTop: false };
+window.defaultTransitionTime = 300;
+window.userSettings = { enableAnimations: true, confirmClearAll: false };
 window.transitionTime = defaultTransitionTime;
 window.todoCount = 0;
 
-onAuthStateChanged(auth, (user) => {
-    if (user && currentUID === user.uid) {
-        return;
-    }
-    if (user) {
-        currentUID = user.uid;
-        startApp();
-    } else {
-        currentUID = null;
-        clearApp();
-        showSignIn();
-    }
-})
-export { db, currentUID, auth };
+const startApp = () => {
+    onAuthStateChanged(auth, (user) => {
+        // Refreshing auth token does not need login
+        if (user && currentUID === user.uid) {
+            return;
+        }
+        if (user) {
+            // User signed in
+            currentUID = user.uid;
+            getUserData();
+        }
+        else {
+            // User signed out
+            currentUID = null;
+            clearUserData();
+        }
+    })
+    bindAll();
+}
+
+window.addEventListener("load", startApp);
+
+export { db, auth, currentUID };

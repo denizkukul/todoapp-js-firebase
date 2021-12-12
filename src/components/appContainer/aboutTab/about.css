@@ -1,0 +1,75 @@
+/* About */
+.about {
+    scrollbar-width: none;
+    visibility: hidden;
+    position: fixed;
+    overflow: scroll;
+    top: var(--header-height);
+    height: 0;
+    background-color: var(--color3);
+    max-width: var(--app-container-max-width);
+    width: 100%;
+    z-index: 4;
+    transition: visibility var(--transition-time), height var(--transition-time);
+}
+
+.about.active {
+    visibility: visible;
+    height: 100%;
+}
+
+h1 {
+    color: var(--color8);
+    font-size: 22px;
+}
+
+h2 {
+    color: var(--color8);
+    font-size: 18px;
+}
+
+.info {
+    padding: 20px 50px;
+    color: var(--color8);
+}
+
+.info h1 {
+    margin-top: 20px;
+    margin-bottom: 7px;
+}
+
+.info h2 {
+    margin: 10px 0 5px 20px;
+}
+
+.info p {
+    margin-left: 20px;
+}
+
+.info li {
+    margin: 4px 0 2px 40px;
+}
+
+.info .link {
+    margin: 4px 20px;
+}
+
+.info a {
+    text-decoration: none;
+    color: var(--color8);
+}
+
+.info a:hover,
+.info a:focus-visible {
+    color: var(--color9);
+    text-decoration: underline;
+    outline: none;
+}
+
+.info p.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto 100px;
+    white-space: pre;
+}

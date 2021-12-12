@@ -1,40 +1,47 @@
 /* Variables */
 :root {
     /* Colors */
-    --color1: #FFFFFF; /* Todo-Edit components and buttons background color*/
-    --color2: #FAFAFA; /* Header background color*/
-    --color3: #F1F1F1; /* App background color*/
-    --color4: #DEDEDE; /* Body background color*/
-    --color5: #CCCCCC; /* Text-Buttons Menu-items hover color */
-    --color6: #AAAAAA; /* Items and buttons border color */
-    --color7: #909090; /* Completed todo's text color */
-    --color8: #606060; /* Icon, Text, header, header-border color*/
-    --color9: #000000; /* Text button hover color*/
+    --color1: #FFFFFF;
+    --color2: #EEEEEE;
+    --color3: #DDDDDD;
+    --color4: #CCCCCC;
+    --color5: #BBBBBB;
+    --color6: #AAAAAA;
+    --color7: #777777;
+    --color8: #555555;
+    --color9: #333333;
+    --color10: #111111;
+    --color11: #000000;
     
     /* Transition Durations */
     --transition-time: 0ms;
-    --half-transition-time: calc(var(--transition-time) / 2);
+    --fast-transition-time: calc(var(--transition-time) / 2);
     --option-transition-time: calc(var(--transition-time) / 6);
     
+    /* App-Container */
+    --app-container-max-width: 900px;
+
     /* Header*/
     --header-height: 80px;
-    
-    /* Header Button */
     --header-button-icon-size: 40px;
     --header-button-size: 55px;
     --header-button-left: var(--app-spacing-x);
-    
-    /* Title */
     --title-font-size: 36px;
     --title-letter-spacing: 10px;
     
+    /* Modal */
+    --modal-width: 50%;
+    --modal-min-width: 500px;
+    --modal-text-font-size: 1.6rem;
+    --modal-button-height: 40px;
+    --modal-button-widht: 80px;
+
     /* Menu */
     --menu-icon-size: 36px;
     
     /* App */
     --app-border-radius: 25px;
     --app-font-size: 1rem;
-    --app-min-width: 900px;
     --app-spacing-x: 60px;
     --app-spacing-y: 15px;
     --app-spacing-y-inner: calc(var(--app-spacing-y) * 1.5);
@@ -66,7 +73,8 @@
     --option-value-height: 40px;
     --option-icon-size: 30px;
     --option-icon-position: 24px;
-    --option-icon-margin: 9px
+    --option-icon-margin: 9px;
+    --savebutton-margin-bottom: 0px;
 }
 
 /* General */
@@ -84,32 +92,15 @@
 
 html {
     scroll-behavior: smooth;
-    scrollbar-width: 0;
+    scrollbar-width: none;
     -webkit-tap-highlight-color: transparent;
 }
 
 body {
     display: flex;
     justify-content: center;
-    background-color: var(--color4);
+    background-color: var(--color5);
     min-height: 100vh;
-}
-
-h1 {
-    color: var(--color8);
-    font-size: 22px;
-}
-
-h2 {
-    color: var(--color8);
-    font-size: 18px;
-}
-
-.app-container {
-    display: none;
-    visibility: hidden;
-    width: 100%;
-    max-width: var(--app-min-width);
 }
 
 input {
@@ -117,25 +108,48 @@ input {
     color: var(--color8) ;
 }
 
+/* Buttons */
 span.material-icons {
     color: var(--color8);
+    transition: all var(--fast-transition-time);
 }
-
-button {
-    background-color: var(--color1);
-    transition: all var(--half-transition-time);
-}
-
 button:focus {
     outline: none;
 }
+button {
+    background-color: var(--color1);
+    color: var(--color8);
+    transition: all var(--fast-transition-time);
+}
+button * {
+    color: var(--color8);
+    transition: all var(--fast-transition-time);
+}
+button:not([tabindex="-1"]):hover,
+button:not([tabindex="-1"]):focus-visible {
+    color: var(--color11);
+    background-color: var(--color6);
+    cursor: pointer;
+}
+button:not([tabindex="-1"]):hover *,
+button:not([tabindex="-1"]):focus-visible * { 
+    color: var(--color11);
+}
+button:not([tabindex="-1"]):active {
+    background-color: var(--color8);
+    color: var(--color1);
+    transition: all 0s;
+}
+button:not([tabindex="-1"]):active * {
+    color: var(--color1);
+    transition: all 0s;
+}
 
-/* Buttons */
+/* Button Types */
 .icon-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--color1);
     border: 1px solid var(--color6);
     width: var(--icon-button-size);
     height: var(--icon-button-size);
@@ -148,13 +162,11 @@ button:focus {
 
 .header-button {
     position: absolute;
-    left: var(--header-button-left);
     height: var(--header-button-size);
     width: var(--header-button-size);
     background-color: var(--color2);
     border: none;
     border-radius: 50%;
-
 }
 
 .header-button span.material-icons {
@@ -165,49 +177,7 @@ button:focus {
 
 .text-button {
     font-size: var(--text-button-font-size);
-    border: 1px solid var(--color6);
-    background-color: var(--color1);
-    color: var(--color8);
-}
-
-/* Progress-Indicator */
-.progress {
-    display: flex;
-    font-size: 50px;
-    inset: 0;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-    height: 100vh;
-}
-
-.spinner-background {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 38px;
-    width: 38px;
-    border-radius: 50%;
-    border: 5px solid var(--color8);
-}
-
-.spinner  {
-    background-color: transparent ;
-    border: 30px solid transparent;
-    border-top: 30px solid var(--color4);
-    height: 0px;
-    width: 0px;
-    animation: spin infinite 1s linear;
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+    border: 1px solid var(--color7);
 }
 
 /* Media Queries */
@@ -217,9 +187,7 @@ button:focus {
         --app-min-width: 96%;
         --app-spacing-y: 12px;
         --app-spacing-x: 45px;
-    }
-    .settings .save button {
-        margin-bottom: 50px;
+        --savebutton-margin-bottom: 50px;
     }
 }
 @media screen and (max-width: 800px) {
@@ -238,18 +206,12 @@ button:focus {
         --icon-padding: 10px;
         --button-container-width: 96px;
         --check-container-width: 58px;
-    }
-    .modal-window-container {
-        width: 80%;
-        min-width: 0;
-    }
-    .modal-text {
-        font-size: 1.5rem;
-    }
-    .modal-button {
-        font-size: 1.1rem;
-        height: 35px;
-        width: 75px;
+        --modal-width: 80%;
+        --modal-min-width: 0;
+        --modal-text-font-size: 1.5rem;
+        --modal-button-height: 35px;
+        --modal-button-widht: 75px;
+        --savebutton-margin-bottom: 50px;
     }
     .add-button {
         padding-right: 2px;
@@ -298,9 +260,6 @@ button:focus {
         margin-right: var(--icon-padding);
         padding-bottom: 1px;
     }
-    .settings .save button {
-        font-size: var(--option-font-size);
-    }
     .info {
         padding: 20px 30px;
     }
@@ -323,26 +282,14 @@ button:focus {
         --option-value-width: 100px;
         --option-icon-position: 32px;
         --option-icon-margin: 7px;
-    }
-    .title{
-        left: 8px;
-    }
-    .modal-window-container {
-        width: 90%;
-    }
-    .modal-text {
-        font-size: 1.4rem;
-    }
-    .modal-button {
-        font-size: 1.05rem;
-        height: 35px;
-        width: 70px;
+        --modal-width: 90%;
+        --modal-text-font-size: 1.4rem;
     }
     .menu-item .material-icons{
         margin-right: 15px;
     }
-    .sign-out-button {
-        margin-right: 12px;
+    .toggle-login-button span.material-icons{
+        margin-right: 11px;
     }
     .addtodo-component input {
         padding-left: 30px;
@@ -374,7 +321,7 @@ button:focus {
     .footer-button-container {
         padding-right: 10px;
     } 
-    .settings .save button {
+    .save-settings-button {
         padding: 0 calc(var(--item-height) - 45px);
     }
 }
@@ -402,9 +349,9 @@ button:focus {
         font-size: var(--header-button-icon-size);
         margin-left: 25px;
     }
-    .sign-out-button span.material-icons {
-        margin-left: calc(var(--header-button-left) + 10px);
-        margin-right: 10px;
+    .toggle-login-button span.material-icons {
+        margin-left: calc(var(--header-button-left) + 8px);
+        margin-right: 12px;
     }
 }
 @media screen and (max-width: 300px) {
@@ -426,7 +373,7 @@ button:focus {
         font-size: var(--header-button-icon-size);
         margin-left: calc(var(--header-button-left) + 3px);
     }
-    .sign-out-button span.material-icons {
+    .toggle-login-button span.material-icons {
         margin-left: calc(var(--header-button-left) + 6px);
         margin-right: 12px;
     }

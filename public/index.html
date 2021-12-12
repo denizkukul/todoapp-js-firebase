@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=block" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined&display=block" rel="stylesheet">
     <title>Todo App</title>
 </head>
 
@@ -20,16 +20,38 @@
         </div>
     </div>
     <!-- Sign In -->
-    <div class="sign-in" style="display: none;">
-        <div class="sign-in-buttons">
-            <button data-provider="google">Sign in with Google</button>
-            <button data-provider="github">Sign in with Github</button>
-            <button data-provider="facebook">Sign in with Facebook</button>
-            <!-- <button class="anonymous">Continue as anonymous</button> -->
+    <div class="sign-in-tab" style="display: none;">
+        <div class="sign-in-container show-sign-in">
+            <div class="sign-in-tab-buttons">
+                <button class="tab-button text-button goto-sign-in" tabindex="-1">Sign In</button>
+                <button class="tab-button text-button goto-sign-up">Sign Up</button>
+            </div>
+            <div class="sign-in">
+                <div class="sign-in-email">
+                    <input class="email" type="email" placeholder="E-mail">
+                    <input class="password" type="password" placeholder="Password">
+                    <button class="text-button sign-in-button">Sign In</button>
+                </div>
+                <div class="sign-in-providers">
+                    <button class="text-button sign-in-button" data-provider="google"><span class="button-detail">Sign in with</span><br><span
+                            class="provider">Google</span></button>
+                    <button class="text-button sign-in-button" data-provider="github"><span class="button-detail">Sign in with</span><br><span
+                            class="provider">Github</span></button>
+                    <button class="text-button sign-in-button" data-provider="anonymous"><span class="button-detail">Continue as</span><br><span
+                            class="provider">Guest</span></button>
+                </div>
+            </div>
+            <div class="sign-up">
+                <div class="sign-up-email">
+                    <input class="email" type="email" placeholder="E-mail">
+                    <input class="password" type="password" placeholder="Password">
+                    <button class="text-button sign-up-button">Sign Up</button>
+                </div>
+            </div>
         </div>
     </div>
     <!-- App-Container -->
-    <div class="app-container" style="visibility: hidden;">
+    <div class="app-container" style="display: none;">
         <!-- Transition Shade -->
         <div class="transition-shade">
         </div>
@@ -49,7 +71,7 @@
         </div>
         <!-- Header -->
         <div class="header">
-            <button class="header-button icon-button menu-button" tabindex="1">
+            <button class="header-button icon-button menu-button active" tabindex="1">
                 <span class="material-icons">
                     menu
                 </span>
@@ -60,7 +82,7 @@
                 </span>
             </button>
             <div class="title">
-                <span class="title-todolist">
+                <span class="title-todolist active">
                     TODOLIST
                 </span>
                 <span class="title-settings">
@@ -70,7 +92,7 @@
                     ABOUT
                 </span>
             </div>
-            <button class="header-button icon-button goto-top-button" tabindex="4">
+            <button class="header-button icon-button scroll-top-button active" tabindex="4">
                 <span class="material-icons">
                     arrow_upward
                 </span>
@@ -78,7 +100,7 @@
         </div>
         <!-- Menu -->
         <div class="menu">
-            <button class="menu-item settings-button" tabindex="3">
+            <button class="menu-item settings-button" tabindex="-1">
                 <span class="material-icons">
                     settings
                 </span>
@@ -86,7 +108,7 @@
                     Settings
                 </span>
             </button>
-            <button class="menu-item about-button" tabindex="3">
+            <button class="menu-item about-button" tabindex="-1">
                 <span class="material-icons">
                     info
                 </span>
@@ -94,7 +116,7 @@
                     About
                 </span>
             </button>
-            <button class="menu-item toggle-login-button" tabindex="3">
+            <button class="menu-item toggle-login-button" tabindex="-1">
                 <span class="material-icons">
                     logout
                 </span>
@@ -107,7 +129,7 @@
         <div class="settings">
             <div class="options">
                 <div class="option">
-                    <button class="option-button" data-option-name="enableAnimations" tabindex="2">
+                    <button class="option-button" data-option-name="enableAnimations" tabindex="-1">
                         <div class="option-description">
                             Enable animations
                         </div>
@@ -122,7 +144,7 @@
                     </button>
                 </div>
                 <div class="option">
-                    <button class="option-button" data-option-name="confirmClearAll" tabindex="2">
+                    <button class="option-button" data-option-name="confirmClearAll" tabindex="-1">
                         <div class="option-description">
                             Confirm when clearing all todos
                         </div>
@@ -136,24 +158,9 @@
                         </div>
                     </button>
                 </div>
-                <!-- <div class="option">
-                    <button class="option-button" data-option-name="newTodoTop" tabindex="2">
-                        <div class="option-description">
-                            Add new todos to top of the list
-                        </div>
-                        <div class="option-value">
-                            <span class="material-icons-outlined">
-                                cancel
-                            </span>
-                            <span class="material-icons-outlined">
-                                check_circle
-                            </span>
-                        </div>
-                    </button>
-                </div> -->
             </div>
             <div class="save">
-                <button class="text-button" tabindex="2">Save</button>
+                <button class="save-settings-button text-button" tabindex="2">Save</button>
             </div>
         </div>
         <!-- About -->
@@ -208,7 +215,7 @@
             </div>
         </div>
         <!-- App -->
-        <div class="app">
+        <div class="app-main">
             <!-- Add-Todo element -->
             <div class="addtodo-component">
                 <input class="add-input" type="text" placeholder="What needs to be done?">

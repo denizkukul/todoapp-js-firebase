@@ -1,6 +1,6 @@
 # JS Firebase Todoapp
 
-# [Live Site](https://todoappa-js.web.app/)
+# [Live Site](https://todoappa-js.firebaseapp.com/)
 
 ## App
 Todo app with functions to add, edit and remove list items.

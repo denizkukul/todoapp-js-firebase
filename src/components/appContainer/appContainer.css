@@ -1,0 +1,24 @@
+.app-container {
+    display: none;
+    width: 100%;
+    max-width: var(--app-container-max-width);
+}
+
+.transition-shade {
+    visibility: hidden;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    width: var(--app-container-max-width);
+    padding-top: var(--header-height);
+    background-color: var(--color11);
+    opacity: 0;
+    overflow: hidden;
+}
+
+.transition-shade.menu-active,
+.transition-shade.tab-active {
+    visibility: visible;
+    opacity: 0.6;
+}

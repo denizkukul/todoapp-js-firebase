@@ -1,13 +1,14 @@
 import { db, currentUID } from "./index";
 import { ref, get } from "firebase/database";
-import { progresIndicator, appContainer, todoList } from "./domShortcuts";
-import updateListVisibility from "./functions/updateListVisibility";
-import createItemContainer from "./functions/createItemContainer";
-import createTodo from "./components/todoList/createTodo";
-import bindApp from "./components/bindApp";
-import "./app.css"
+import { hideApp, showApp, updateListVisibility, todoList } from "./components/appContainer/appMain/appMain";
+import { hideAppContainer, hideShadeMenu, showAppContainer } from "./components/appContainer/appContainer";
+import { hideProgressIndicator } from "./components/progressIndicator/progressIndicator";
+import { showSignIn } from "./components/signInTab/signIn";
+import { updateOptions } from "./components/appContainer/settingsTab/settings";
+import createItemContainer from "./components/appContainer/appMain/todoList/createItemContainer";
+import createTodo from "./components/appContainer/appMain/todoList/createTodo";
 
-export const startApp = () => {
+export const getUserData = () => {
     //Get user data
     let userDataRef = ref(db, currentUID);
     get(userDataRef)
@@ -31,26 +32,30 @@ export const startApp = () => {
                 todoCount = 0;
             }
         })
-        .catch((error) => {
-            console.error(error)
-        })
-        .finally(() => {
+        .then(() => {
             // Chage visible tab from progress-indicator to app
-            appContainer.style.display = "block";
-            appContainer.style.visibility = "visible";
-            appContainer.classList.add("app-visible");
-            progresIndicator.style.display = "none";
+            updateOptions();
             updateListVisibility();
+            showAppContainer();
+            showApp();
+            hideProgressIndicator();
             setTimeout(() => {
                 transitionTime = userSettings.enableAnimations ? defaultTransitionTime : 0;
                 document.documentElement.style.setProperty("--transition-time", `${transitionTime}ms`);
-                bindApp();
             }, 200)
+        })
+        .catch((error) => {
+            alert(error);
+            clearUserData();
         })
 }
 
-export const clearApp = () => {
+export const clearUserData = () => {
+    showSignIn();
+    hideAppContainer();
+    hideApp();
+    hideShadeMenu();
     todoList.innerHTML = "";
-    document.documentElement.style.setProperty("--transition-time", `${defaultTransitionTime}`);
+    document.documentElement.style.setProperty("--transition-time", `${defaultTransitionTime}ms`);
     updateListVisibility();
 }

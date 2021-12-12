@@ -1,0 +1,39 @@
+/* Progress-Indicator */
+.progress {
+    display: flex;
+    font-size: 50px;
+    inset: 0;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    height: 100vh;
+}
+
+.spinner-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 38px;
+    width: 38px;
+    border-radius: 50%;
+    border: 5px solid var(--color8);
+}
+
+.spinner  {
+    background-color: transparent ;
+    border: 30px solid transparent;
+    border-top: 30px solid var(--color5);
+    height: 0px;
+    width: 0px;
+    animation: spin infinite 1s linear;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

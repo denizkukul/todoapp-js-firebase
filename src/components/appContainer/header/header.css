@@ -1,0 +1,118 @@
+/* Header */
+.header {
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    max-width: var(--app-container-max-width);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--header-height);
+    border-bottom: 1px solid var(--color8);
+    background-color: var(--color2);
+}
+
+/* Menu Button */
+.menu-button {
+    visibility: hidden;
+    opacity: 0;
+    left: var(--header-button-left);
+    transition: opacity var(--fast-transition-time) linear,
+                visibility var(--fast-transition-time) linear,
+                background-color var(--fast-transition-time);
+}
+.menu-button.active {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity var(--fast-transition-time) linear var(--fast-transition-time),
+                visibility var(--fast-transition-time) linear var(--fast-transition-time),
+                background-color var(--fast-transition-time);
+}
+.menu-button.active:active {
+    transition: opacity var(--fast-transition-time) linear var(--fast-transition-time),
+                visibility var(--fast-transition-time) linear var(--fast-transition-time),
+                background-color 0s;
+}
+
+/* Back Button */
+.back-button {
+    visibility: hidden;
+    opacity: 0;
+    left: var(--header-button-left);
+    transition: opacity var(--fast-transition-time) linear,
+                visibility var(--fast-transition-time) linear,
+                background-color var(--fast-transition-time);
+}
+
+.back-button.active {
+    visibility: visible;
+    opacity: 1;    
+    transition: opacity var(--fast-transition-time) linear var(--fast-transition-time),
+                visibility var(--fast-transition-time) linear var(--fast-transition-time),
+                background-color var(--fast-transition-time);
+}
+
+.back-button.active:active {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity var(--fast-transition-time) linear var(--fast-transition-time),
+                visibility var(--fast-transition-time) linear var(--fast-transition-time),
+                background-color 0s;
+}
+
+/* Scroll-Top Button */
+.scroll-top-button {
+    visibility: hidden;
+    left: auto;
+    right: var(--header-button-left);
+    opacity: 0;
+    transition: opacity var(--fast-transition-time) linear,
+                visibility var(--fast-transition-time) linear,
+                background-color var(--fast-transition-time);
+}
+.scroll-top-button.active.scrolled {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity var(--fast-transition-time) linear var(--fast-transition-time),
+                visibility var(--fast-transition-time) linear var(--fast-transition-time),
+                background-color var(--fast-transition-time);
+}
+.scroll-top-button.active.scrolled:active {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity var(--fast-transition-time) linear var(--fast-transition-time),
+                visibility var(--fast-transition-time) linear var(--fast-transition-time),
+                background-color 0s;
+}
+
+/* Title */
+.title {
+    position: relative;
+    height: var(--header-height);
+}
+.title-todolist,
+.title-settings,
+.title-about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    height: var(--header-height);
+    text-align: center;
+    font-size: var(--title-font-size);
+    font-weight: 700;
+    letter-spacing: var(--title-letter-spacing);
+    line-height: var(--title-font-size);
+    color: var(--color8);
+    transition: opacity var(--fast-transition-time) linear;
+}
+.title-todolist.active,
+.title-settings.active,
+.title-about.active {
+    opacity: 1;
+    transition: opacity var(--fast-transition-time) linear var(--fast-transition-time);
+}
+

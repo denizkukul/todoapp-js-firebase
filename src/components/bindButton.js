@@ -8,7 +8,6 @@ const bindButton = (button, func) => {
             return
         }
         if (e.type === "touchend") {
-            console.log("touch end");
             e.preventDefault();
             if (!e.currentTarget.classList.contains("touch-active")) return;
             func(e);

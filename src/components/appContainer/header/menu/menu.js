@@ -29,9 +29,7 @@ export const hideMenu = () => {
     menu.removeEventListener("focusout", menuFocusout);
     menu.classList.remove("active");
     menuItems.forEach(button => button !== menuButton ? button.setAttribute("tabindex", "-1") : "");
-    if (!userSettings.enableAnimations) {
-        hideShadeMenu();
-    }
+    hideShadeMenu();
 }
 
 const showMenu = () => {
@@ -57,11 +55,9 @@ export const toggleMenu = () => {
 
 const menuTransitionEnd = (e) => {
     if (e.target != menu) return;
-    if (window.getComputedStyle(menu).getPropertyValue("height") === "0px") {
-        hideShadeMenu();
-        return
+    if (window.getComputedStyle(menu).getPropertyValue("height") !== "0px") {
+        menuItems.forEach(button => button !== menuButton ? button.setAttribute("tabindex", "3") : "");
     }
-    menuItems.forEach(button => button !== menuButton ? button.setAttribute("tabindex", "3") : "");
 }
 
 const menuFocusout = (e) => {

@@ -5,6 +5,7 @@ import { showShadeTab, hideShadeTab } from "../appContainer";
 import { showApp, hideApp } from "../appMain/appMain";
 import bindButton from "../../bindButton";
 import "./settings.css";
+import { hideMenu } from "../header/menu/menu";
 
 const saveSettingsButton = document.querySelector(".save-settings-button");
 const settingsTab = document.querySelector(".settings");
@@ -30,14 +31,13 @@ export const hideSettings = () => {
     titleSettings.classList.remove("active");
     titleTodolist.classList.add("active");
     showApp();
+    hideShadeTab();
     options.forEach(button => button.setAttribute("tabindex", "-1"))
     if (!userSettings.enableAnimations) {
         showApp();
-        hideShadeTab();
         updateOptions();
     }
 }
-
 
 const toggleOption = (e) => {
     if (e.currentTarget.getAttribute("tabindex") === "-1") return;
@@ -56,6 +56,7 @@ const saveSettings = () => {
     showScrollTopButton();
     hideBackButton();
     hideSettings();
+    hideMenu();
 }
 
 const settingsTransitionEnd = (e) => {
@@ -67,7 +68,6 @@ const settingsTransitionEnd = (e) => {
     else {
         showApp();
         updateOptions();
-        hideShadeTab();
     }
 }
 

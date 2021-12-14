@@ -13,9 +13,11 @@
     width: var(--app-container-max-width);
     padding-top: var(--header-height);
     background-color: var(--color11);
-    opacity: 0;
+    opacity: 0.1;
     overflow: hidden;
+    transition: opacity var(--transition-time) linear, visibility var(--transition-time);
 }
+
 
 .transition-shade.menu-active,
 .transition-shade.tab-active {

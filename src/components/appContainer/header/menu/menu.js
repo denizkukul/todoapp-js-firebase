@@ -4,6 +4,7 @@ import { showSettings } from "../../settingsTab/settings";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../../index";
 import { hideMenuButton, hideScrollTopButton, showBackButton } from "../header";
+import bindButton from "../../../bindButton";
 import "./menu.css";
 
 const menuButton = document.querySelector(".menu-button");
@@ -93,9 +94,9 @@ const toggleLogin = (e) => {
 
 const bindMenu = () => {
     menu.addEventListener("transitionend", menuTransitionEnd);
-    settingsButton.addEventListener("click", settingsButtonClicked);
-    aboutButton.addEventListener("click", aboutButtonClicked);
-    toggleLoginButton.addEventListener("click", toggleLogin);
+    bindButton(settingsButton, settingsButtonClicked);
+    bindButton(aboutButton, aboutButtonClicked);
+    bindButton(toggleLoginButton, toggleLogin);
 }
 
 export default bindMenu;

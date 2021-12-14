@@ -3,6 +3,7 @@ import checkTodo from "./todo/checkTodo";
 import startEdit from "./todo/startEdit";
 import deleteTodo from "./todo/deleteTodo";
 import saveEdit from "./edit/saveEdit";
+import bindButton from "../../../bindButton";
 
 // Create a todo item with given arguments
 export const createTodo = (value, completed = false, initial = false) => {
@@ -27,10 +28,10 @@ export const createTodo = (value, completed = false, initial = false) => {
             <button class="app-button icon-button delete-button" tabindex="${initial ? "0" : "-1"}">${deleteIcon}</button>
         </div>`
 
-    todo.querySelector(".check-button").addEventListener("click", checkTodo);
-    todo.querySelector(".edit-button").addEventListener("click", startEdit);
-    todo.querySelector(".delete-button").addEventListener("click", deleteTodo);
-    todo.querySelector(".save-button").addEventListener("click", saveEdit);
+    bindButton(todo.querySelector(".check-button"), checkTodo);
+    bindButton(todo.querySelector(".edit-button"), startEdit);
+    bindButton(todo.querySelector(".delete-button"), deleteTodo);
+    bindButton(todo.querySelector(".save-button"), saveEdit);
 
     return todo;
 }

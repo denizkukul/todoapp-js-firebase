@@ -36,5 +36,5 @@
     width: var(--button-container-width);
     border: none;
     border-left: 1px solid var(--color6);
-    border-radius: none;
+    border-radius: 0;
 }

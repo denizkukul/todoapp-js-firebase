@@ -2,6 +2,7 @@ import { ref, set, update } from "firebase/database";
 import { db, currentUID } from "../../../../index";
 import { showModal } from "../../modal/modal";
 import { updateListVisibility } from "../appMain";
+import bindButton from "../../../bindButton";
 import "./footer.css";
 
 export const deleteCompletedButton = document.querySelector(".delete-completed-button");
@@ -73,8 +74,8 @@ const clearAllClicked = () => {
 }
 
 const bindFooter = () => {
-    deleteCompletedButton.addEventListener("click", deleteCompleted);
-    deleteAllButton.addEventListener("click", clearAllClicked);
+    bindButton(deleteCompletedButton, deleteCompleted);
+    bindButton(deleteAllButton, clearAllClicked);
 }
 
 export default bindFooter;

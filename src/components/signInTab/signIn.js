@@ -2,6 +2,7 @@ import { GoogleAuthProvider, GithubAuthProvider, signInWithRedirect, signInAnony
 import { hideProgressIndicator, showProgressIndicator } from "../progressIndicator/progressIndicator";
 import { clearUserData } from "../../app";
 import { auth } from "../../index";
+import bindButton from "../bindButton";
 import "./signIn.css"
 
 const signInTab = document.querySelector(".sign-in-tab");
@@ -116,16 +117,17 @@ const signUpEmailEnter = (e) => {
 }
 
 const bindSignIn = () => {
-    signUpEmailButton.addEventListener("click", signUp);
-    signInEmailButton.addEventListener("click", signInEmail);
-    gotoSignInButton.addEventListener("click", gotoSignIn);
-    gotoSignUpButton.addEventListener("click", gotoSignUp);
-    signInEmailInput.addEventListener("keypress", signInEmailEnter);
-    signUpEmailInput.addEventListener("keypress", signUpEmailEnter);
-    signInPasswordInput.addEventListener("keypress", signInEnter);
-    signUpPasswordInput.addEventListener("keypress", signUpEnter);
+    bindButton(signUpEmailButton, signUp);
+    bindButton(signInEmailButton, signInEmail);
+    bindButton(gotoSignInButton, gotoSignIn);
+    bindButton(gotoSignUpButton, gotoSignUp);
+    bindButton(signInEmailInput, signInEmailEnter);
+    bindButton(signUpEmailInput, signUpEmailEnter);
+    bindButton(signInPasswordInput, signInEnter);
+    bindButton(signUpPasswordInput, signUpEnter);
+
     signInButtons.forEach(button => {
-        button.addEventListener("click", signIn);
+        bindButton(button, signIn);
     })
 }
 

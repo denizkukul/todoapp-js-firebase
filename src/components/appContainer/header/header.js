@@ -1,6 +1,7 @@
 import { hideAbout } from "../aboutTab/about";
 import { hideSettings } from "../settingsTab/settings";
 import { hideMenu, toggleMenu } from "./menu/menu";
+import bindButton from "../../bindButton";
 import "./header.css";
 
 const menuButton = document.querySelector(".menu-button");
@@ -61,9 +62,9 @@ const scrollToTop = () => {
 
 const bindHeader = () => {
     document.addEventListener("scroll", toggleScrollTopButton);
-    scrollTopButton.addEventListener("click", scrollToTop);
-    menuButton.addEventListener("click", toggleMenu);
-    backButton.addEventListener("click", backButtonClicked);
+    bindButton(scrollTopButton, scrollToTop);
+    bindButton(menuButton, toggleMenu);
+    bindButton(backButton, backButtonClicked);
 }
 
 export default bindHeader;

@@ -135,12 +135,16 @@ button:not([tabindex="-1"]):hover *,
 button:not([tabindex="-1"]):focus-visible * { 
     color: var(--color11);
 }
-button:not([tabindex="-1"]):active {
+
+button:not([tabindex="-1"]):active,
+button:not([tabindex="-1"]).touch-active {
     background-color: var(--color8);
     color: var(--color1);
     transition: all 0s;
 }
-button:not([tabindex="-1"]):active * {
+
+button:not([tabindex="-1"]):active *,
+button:not([tabindex="-1"]).touch-active * {
     color: var(--color1);
     transition: all 0s;
 }

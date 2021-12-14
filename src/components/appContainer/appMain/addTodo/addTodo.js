@@ -1,6 +1,7 @@
 import { db, currentUID } from "../../../../index";
 import { set, push, ref } from "firebase/database";
 import { todoList, updateListVisibility } from "../appMain";
+import bindButton from "../../../bindButton";
 import createItemContainer from "../todoList/createItemContainer";
 import createTodo from "../todoList/createTodo";
 import "./addTodo.css";
@@ -83,8 +84,8 @@ const addTodo = () => {
 
 const bindAddTodo = () => {
     addTodoComponent.addEventListener("focusout", addTodoFocusout);
-    addButton.addEventListener("click", addTodo);
     addInput.addEventListener("keypress", inputEnter);
+    bindButton(addButton, addTodo);
 }
 
 export default bindAddTodo;

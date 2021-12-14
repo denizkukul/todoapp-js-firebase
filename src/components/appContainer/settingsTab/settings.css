@@ -45,7 +45,8 @@
     background-color: var(--color5);
 }
 
-.option-button:not([tabindex="-1"]):active {
+.option-button:not([tabindex="-1"]):active,
+.option-button:not([tabindex="-1"]).touch-active {
     background-color: var(--color7);
 }
 
@@ -76,10 +77,13 @@
 .option-button:not([tabindex="-1"]):focus-visible .option-value{
     background-color: var(--color7);
 }
-.option-button:not([tabindex="-1"]):active .option-value {
+.option-button:not([tabindex="-1"]):active .option-value,
+.option-button:not([tabindex="-1"]).touch-active .option-value {
     background-color: var(--color1);
 }
-.option-button:not([tabindex="-1"]):active .option-value span.material-icons-outlined {
+
+.option-button:not([tabindex="-1"]):active .option-value span.material-icons-outlined,
+.option-button:not([tabindex="-1"]).touch-active .option-value span.material-icons-outlined {
     color: var(--color9);
 }
 
@@ -139,14 +143,5 @@
     padding: 0 calc(var(--item-height) - 10px);
     border-radius: var(--item-border-radius);
     margin-bottom: var(--savebutton-margin-bottom);
-}
-
-.save-settings-button:hover,
-.save-settings-button:focus-visible {
-    background-color: var(--color5);
-}
-
-.save-settings-button:active {
-    background-color: var(--color7);
 }
 

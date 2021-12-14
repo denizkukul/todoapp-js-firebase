@@ -1,4 +1,5 @@
 import { deleteAll } from "../appMain/footer/footer";
+import bindButton from "../../bindButton";
 import "./modal.css"
 
 const modal = document.querySelector(".modal");
@@ -41,10 +42,10 @@ const cancelDelete = () => {
 }
 
 const bindModal = () => {
+    bindButton(confirmButton, confirmDelete);
+    bindButton(cancelButton, cancelDelete);
     modalShade.addEventListener("click", cancelDelete);
     modalShade.addEventListener("touchstart", cancelDelete);
-    confirmButton.addEventListener("click", confirmDelete);
-    cancelButton.addEventListener("click", cancelDelete);
 }
 
 export default bindModal;

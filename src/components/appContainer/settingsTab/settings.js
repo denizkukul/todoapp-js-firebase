@@ -3,6 +3,7 @@ import { db, currentUID } from "../../../index";
 import { hideBackButton, showMenuButton, showScrollTopButton } from "../header/header";
 import { showShadeTab, hideShadeTab } from "../appContainer";
 import { showApp, hideApp } from "../appMain/appMain";
+import bindButton from "../../bindButton";
 import "./settings.css";
 
 const saveSettingsButton = document.querySelector(".save-settings-button");
@@ -20,7 +21,8 @@ export const showSettings = () => {
     settingsTab.classList.add("active");
     titleSettings.classList.add("active");
     if (!userSettings.enableAnimations) {
-        options.forEach(button => button.setAttribute("tabindex", "2"))
+        options.forEach(button => button.setAttribute("tabindex", "2"));
+        hideApp();
     }
 }
 export const hideSettings = () => {
@@ -30,6 +32,7 @@ export const hideSettings = () => {
     showApp();
     options.forEach(button => button.setAttribute("tabindex", "-1"))
     if (!userSettings.enableAnimations) {
+        showApp();
         hideShadeTab();
         updateOptions();
     }
@@ -82,9 +85,9 @@ export const updateOptions = () => {
 
 const bindSettings = () => {
     options.forEach(option => {
-        option.addEventListener("click", toggleOption);
+        bindButton(option, toggleOption);
     })
-    saveSettingsButton.addEventListener("click", saveSettings);
+    bindButton(saveSettingsButton, saveSettings);
     settingsTab.addEventListener("transitionend", settingsTransitionEnd);
 }
 

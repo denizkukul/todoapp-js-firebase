@@ -20,7 +20,7 @@ Todo app with functions to add, edit and remove list items.
 
 ## License
 Copyright © 2021 Deniz Kukul \
-Licensed under MIT license see LICENSES.MIT for details.
+Licensed under MIT license see LICENSE.MIT for details.
 
 ### External libraries
 ------------------
@@ -29,7 +29,7 @@ This source code uses the following external libraries:
 
 ### Firebase-js-sdk 
 Copyright © 2020 Google LLC\
-Licensed under Apache-2.0 license, see LICENSES.APACHE-2 for details. \
+Licensed under Apache-2.0 license, see LICENSE.APACHE-2 for details. \
 [Github](https://github.com/firebase/firebase-js-sdk) \
 [Website](https://firebase.google.com/)
 

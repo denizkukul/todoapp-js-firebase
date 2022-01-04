@@ -35,6 +35,6 @@ Licensed under Apache-2.0 license, see LICENSE.APACHE-2 for details. \
 
 ### Material Design Icons
 Copyright © 2015 Google Inc\
-Licensed under Apache-2.0 license, see LICENSES.APACHE-2 for details. \
+Licensed under Apache-2.0 license, see LICENSE.APACHE-2 for details. \
 [Github](https://github.com/google/material-design-icons) \
 [Website](https://google.github.io/material-design-icons/)

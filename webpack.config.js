@@ -11,6 +11,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
+            favicon: "./public/icon.svg",
             template: "./public/index.html"
         }),
     ],
@@ -22,7 +23,7 @@ module.exports = {
                     "style-loader",
                     "css-loader"
                 ]
-            }
+            },
         ]
     },
     devServer: {
